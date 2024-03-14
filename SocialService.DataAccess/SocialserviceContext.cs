@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SocialService.DataAccess;
 
-public partial class SocialserviceContext : DbContext
+public partial class SocialServiceContext : DbContext
 {
-    public SocialserviceContext()
+    public SocialServiceContext()
     {
     }
 
-    public SocialserviceContext(DbContextOptions<SocialserviceContext> options)
+    public SocialServiceContext(DbContextOptions<SocialServiceContext> options)
         : base(options)
     {
     }
