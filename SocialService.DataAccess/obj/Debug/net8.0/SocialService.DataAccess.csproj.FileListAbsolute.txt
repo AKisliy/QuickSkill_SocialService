@@ -1,0 +1,14 @@
+/Users/alexeykiselev/SocialService/SocialService.DataAccess/bin/Debug/net8.0/SocialService.DataAccess.deps.json
+/Users/alexeykiselev/SocialService/SocialService.DataAccess/bin/Debug/net8.0/SocialService.DataAccess.runtimeconfig.json
+/Users/alexeykiselev/SocialService/SocialService.DataAccess/bin/Debug/net8.0/SocialService.DataAccess.dll
+/Users/alexeykiselev/SocialService/SocialService.DataAccess/bin/Debug/net8.0/SocialService.DataAccess.pdb
+/Users/alexeykiselev/SocialService/SocialService.DataAccess/obj/Debug/net8.0/SocialService.DataAccess.csproj.AssemblyReference.cache
+/Users/alexeykiselev/SocialService/SocialService.DataAccess/obj/Debug/net8.0/SocialService.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+/Users/alexeykiselev/SocialService/SocialService.DataAccess/obj/Debug/net8.0/SocialService.DataAccess.AssemblyInfoInputs.cache
+/Users/alexeykiselev/SocialService/SocialService.DataAccess/obj/Debug/net8.0/SocialService.DataAccess.AssemblyInfo.cs
+/Users/alexeykiselev/SocialService/SocialService.DataAccess/obj/Debug/net8.0/SocialService.DataAccess.csproj.CoreCompileInputs.cache
+/Users/alexeykiselev/SocialService/SocialService.DataAccess/obj/Debug/net8.0/SocialService.DataAccess.dll
+/Users/alexeykiselev/SocialService/SocialService.DataAccess/obj/Debug/net8.0/refint/SocialService.DataAccess.dll
+/Users/alexeykiselev/SocialService/SocialService.DataAccess/obj/Debug/net8.0/SocialService.DataAccess.pdb
+/Users/alexeykiselev/SocialService/SocialService.DataAccess/obj/Debug/net8.0/SocialService.DataAccess.genruntimeconfig.cache
+/Users/alexeykiselev/SocialService/SocialService.DataAccess/obj/Debug/net8.0/ref/SocialService.DataAccess.dll
