@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using SocialService.Core.Enums;
 
 namespace SocialService.DataAccess.Extensions
@@ -11,7 +12,19 @@ namespace SocialService.DataAccess.Extensions
                 OrderByOptions.SimpleOrder => answers.OrderBy(a => a.Id),
                 OrderByOptions.ByDate => answers.OrderBy(a => a.PublishedOn),
                 OrderByOptions.ByLikes => answers.OrderByDescending(a => a.Likes),
-                _ => throw new InvalidOperationException($"No such option {option} to order"),
+                _ => throw new InvalidOperationException($"No such option {option} to order")
+            };
+        }
+
+        public static IQueryable<DiscussionEntity> OrderDiscussionsBy(this IQueryable<DiscussionEntity> discussions, OrderByOptions option)
+        {
+            return option switch
+            {
+                OrderByOptions.SimpleOrder => discussions.OrderBy(d => d.Id),
+                OrderByOptions.ByAnswerAmount => discussions.OrderBy(d => d.Answers.Count),
+                OrderByOptions.ByDate => discussions.OrderBy(d => d.PublishedOn),
+                OrderByOptions.ByLikes => discussions.OrderBy(d => d.Likes),
+                _ => throw new InvalidOperationException($"No such option {option} to order")
             };
         }
 

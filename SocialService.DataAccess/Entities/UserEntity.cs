@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace SocialService.DataAccess;
 
-namespace SocialService.DataAccess;
-
-public partial class User
+public class UserEntity
 {
     public int Id { get; set; }
 
@@ -27,9 +24,9 @@ public partial class User
 
     public virtual ICollection<AnswerEntity> Answers { get; set; } = new List<AnswerEntity>();
 
-    public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
+    public virtual ICollection<CommentEntity> Comments { get; set; } = new List<CommentEntity>();
 
-    public virtual ICollection<Discussion> Discussions { get; set; } = new List<Discussion>();
+    public virtual ICollection<DiscussionEntity> Discussions { get; set; } = new List<DiscussionEntity>();
 
     public virtual ICollection<Feedback> Feedbacks { get; set; } = new List<Feedback>();
 

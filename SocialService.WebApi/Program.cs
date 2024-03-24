@@ -1,5 +1,6 @@
 using SocialService.Application.Services;
 using SocialService.Core.Interfaces;
+using SocialService.Core.Interfaces.Repositories;
 using SocialService.Core.Interfaces.Services;
 using SocialService.DataAccess;
 using SocialService.DataAccess.Repository;
@@ -14,6 +15,9 @@ builder.Services.AddDbContext<SocialServiceContext>();
 builder.Services.AddControllers();
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IAnswerRepository, AnswerRepository>();
+builder.Services.AddScoped<IDiscussionRepository, DiscussionRepository>();
+
 builder.Services.AddScoped<IUserService, UserService>();
 
 var app = builder.Build();

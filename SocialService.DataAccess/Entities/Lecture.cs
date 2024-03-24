@@ -7,5 +7,5 @@ public partial class Lecture
 {
     public int Id { get; set; }
 
-    public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
+    public virtual ICollection<CommentEntity> Comments { get; set; } = new List<CommentEntity>();
 }

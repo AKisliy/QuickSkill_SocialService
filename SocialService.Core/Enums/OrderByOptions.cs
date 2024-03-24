@@ -4,6 +4,7 @@ namespace SocialService.Core.Enums
     {
         SimpleOrder,
         ByLikes,
-        ByDate
+        ByDate,
+        ByAnswerAmount
     }
 }

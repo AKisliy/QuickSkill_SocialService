@@ -13,11 +13,13 @@ public class AnswerEntity
 
     public string Body { get; set; } = null!;
 
-    public int? Likes { get; set; }
+    public int Likes { get; set; }
 
     public DateOnly PublishedOn { get; set; }
 
-    public virtual Discussion Discussion { get; set; } = null!;
+    public DateOnly? EditedOn { get; set; }
 
-    public virtual User User { get; set; } = null!;
+    public virtual DiscussionEntity Discussion { get; set; } = null!;
+
+    public virtual UserEntity User { get; set; } = null!;
 }
