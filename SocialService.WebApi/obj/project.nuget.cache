@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Du2XMAdMccDFjmLxZEfeK8HN/XUT3lSWqv6JWCvxBKfgwWwQrEku2Ujb80dsZzV9WQCnHODaggE/j8AYkS4vgw==",
+  "dgSpecHash": "AQsuVprqUsYdJ2V0vOV0GcY82sywgQ4k2rzfsB5F3STQ4UkYlhDCUFLjXEKOaZfdgEVmczPH6puUd/W9q8MS5w==",
   "success": true,
   "projectFilePath": "/Users/alexeykiselev/SocialService/SocialService.WebApi/SocialService.WebApi.csproj",
   "expectedPackageFiles": [

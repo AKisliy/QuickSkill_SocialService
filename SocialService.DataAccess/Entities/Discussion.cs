@@ -17,7 +17,7 @@ public partial class Discussion
 
     public DateOnly PublishedOn { get; set; }
 
-    public virtual ICollection<Answer> Answers { get; set; } = new List<Answer>();
+    public virtual ICollection<AnswerEntity> Answers { get; set; } = new List<AnswerEntity>();
 
     public virtual User Author { get; set; } = null!;
 }

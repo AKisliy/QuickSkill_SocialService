@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/SocialService.WebApi.props" />
+</Project>

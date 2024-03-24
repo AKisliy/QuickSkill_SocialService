@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SocialService.DataAccess;
 
-public partial class Answer
+public class AnswerEntity
 {
     public int Id { get; set; }
 

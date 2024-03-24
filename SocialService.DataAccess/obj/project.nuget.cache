@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "gZjjqF7Hcox30pIFRzSfpqKuiQpqeltZHgUV6jifbHEy8Ldb2OMK3iH5Vkirq7M74rnM2yDBKUpO66g0DbiU9g==",
+  "dgSpecHash": "VMnQqitwlV7RYXzUOVIoOSagYrNuZKg3gqVbRO5bhLOMr1+7hxvdGfiOOlWSWpP8nX5r5tNuL7RXK+UE2oYh7w==",
   "success": true,
   "projectFilePath": "/Users/alexeykiselev/SocialService/SocialService.DataAccess/SocialService.DataAccess.csproj",
   "expectedPackageFiles": [
@@ -14,9 +14,9 @@
     "/Users/alexeykiselev/.nuget/packages/microsoft.entityframeworkcore/8.0.3/microsoft.entityframeworkcore.8.0.3.nupkg.sha512",
     "/Users/alexeykiselev/.nuget/packages/microsoft.entityframeworkcore.abstractions/8.0.3/microsoft.entityframeworkcore.abstractions.8.0.3.nupkg.sha512",
     "/Users/alexeykiselev/.nuget/packages/microsoft.entityframeworkcore.analyzers/8.0.3/microsoft.entityframeworkcore.analyzers.8.0.3.nupkg.sha512",
-    "/Users/alexeykiselev/.nuget/packages/microsoft.entityframeworkcore.design/8.0.3/microsoft.entityframeworkcore.design.8.0.3.nupkg.sha512",
-    "/Users/alexeykiselev/.nuget/packages/microsoft.entityframeworkcore.relational/8.0.3/microsoft.entityframeworkcore.relational.8.0.3.nupkg.sha512",
-    "/Users/alexeykiselev/.nuget/packages/microsoft.entityframeworkcore.tools/8.0.3/microsoft.entityframeworkcore.tools.8.0.3.nupkg.sha512",
+    "/Users/alexeykiselev/.nuget/packages/microsoft.entityframeworkcore.design/8.0.2/microsoft.entityframeworkcore.design.8.0.2.nupkg.sha512",
+    "/Users/alexeykiselev/.nuget/packages/microsoft.entityframeworkcore.relational/8.0.2/microsoft.entityframeworkcore.relational.8.0.2.nupkg.sha512",
+    "/Users/alexeykiselev/.nuget/packages/microsoft.entityframeworkcore.tools/8.0.2/microsoft.entityframeworkcore.tools.8.0.2.nupkg.sha512",
     "/Users/alexeykiselev/.nuget/packages/microsoft.extensions.caching.abstractions/8.0.0/microsoft.extensions.caching.abstractions.8.0.0.nupkg.sha512",
     "/Users/alexeykiselev/.nuget/packages/microsoft.extensions.caching.memory/8.0.0/microsoft.extensions.caching.memory.8.0.0.nupkg.sha512",
     "/Users/alexeykiselev/.nuget/packages/microsoft.extensions.configuration/8.0.0/microsoft.extensions.configuration.8.0.0.nupkg.sha512",

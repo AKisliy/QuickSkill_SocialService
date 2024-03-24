@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "SocialService.Application/1.0.0": {
+        "dependencies": {
+          "SocialService.Core": "1.0.0"
+        },
+        "runtime": {
+          "SocialService.Application.dll": {}
+        }
+      },
+      "SocialService.Core/1.0.0": {
+        "runtime": {
+          "SocialService.Core.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SocialService.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SocialService.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -434,13 +434,37 @@
           "Microsoft.AspNetCore.App"
         ]
       },
+      "SocialService.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "SocialService.Core": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/SocialService.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SocialService.Application.dll": {}
+        }
+      },
+      "SocialService.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/SocialService.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SocialService.Core.dll": {}
+        }
+      },
       "SocialService.DataAccess/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "8.0.3",
           "Microsoft.Extensions.Configuration": "8.0.0",
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "8.0.2"
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "8.0.2",
+          "SocialService.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/SocialService.DataAccess.dll": {}
@@ -1355,6 +1379,16 @@
         "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
     },
+    "SocialService.Application/1.0.0": {
+      "type": "project",
+      "path": "../SocialService.Application/SocialService.Application.csproj",
+      "msbuildProject": "../SocialService.Application/SocialService.Application.csproj"
+    },
+    "SocialService.Core/1.0.0": {
+      "type": "project",
+      "path": "../SocialService.Core/SocialService.Core.csproj",
+      "msbuildProject": "../SocialService.Core/SocialService.Core.csproj"
+    },
     "SocialService.DataAccess/1.0.0": {
       "type": "project",
       "path": "../SocialService.DataAccess/SocialService.DataAccess.csproj",
@@ -1365,6 +1399,8 @@
     "net8.0": [
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.1",
       "Microsoft.AspNetCore.OpenApi >= 8.0.1",
+      "SocialService.Application >= 1.0.0",
+      "SocialService.Core >= 1.0.0",
       "SocialService.DataAccess >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.4.0"
     ]
@@ -1394,6 +1430,12 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
+            "/Users/alexeykiselev/SocialService/SocialService.Application/SocialService.Application.csproj": {
+              "projectPath": "/Users/alexeykiselev/SocialService/SocialService.Application/SocialService.Application.csproj"
+            },
+            "/Users/alexeykiselev/SocialService/SocialService.Core/SocialService.Core.csproj": {
+              "projectPath": "/Users/alexeykiselev/SocialService/SocialService.Core/SocialService.Core.csproj"
+            },
             "/Users/alexeykiselev/SocialService/SocialService.DataAccess/SocialService.DataAccess.csproj": {
               "projectPath": "/Users/alexeykiselev/SocialService/SocialService.DataAccess/SocialService.DataAccess.csproj"
             }

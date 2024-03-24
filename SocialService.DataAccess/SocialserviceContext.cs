@@ -15,7 +15,7 @@ public partial class SocialServiceContext : DbContext
     {
     }
 
-    public virtual DbSet<Answer> Answers { get; set; }
+    public virtual DbSet<AnswerEntity> Answers { get; set; }
 
     public virtual DbSet<Comment> Comments { get; set; }
 
@@ -38,7 +38,7 @@ public partial class SocialServiceContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Answer>(entity =>
+        modelBuilder.Entity<AnswerEntity>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("answer_pkey");
 

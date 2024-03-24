@@ -25,7 +25,7 @@ public partial class User
 
     public int? Subscriptions { get; set; }
 
-    public virtual ICollection<Answer> Answers { get; set; } = new List<Answer>();
+    public virtual ICollection<AnswerEntity> Answers { get; set; } = new List<AnswerEntity>();
 
     public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
 

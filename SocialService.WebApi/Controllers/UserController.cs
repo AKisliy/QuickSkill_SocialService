@@ -11,7 +11,7 @@ namespace SocialService.WebApi.Controllers
     public class UserController : ControllerBase
     {
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetUserById(int id)
+        public IActionResult GetUserById(int id)
         {
             return Ok(id);
         }
