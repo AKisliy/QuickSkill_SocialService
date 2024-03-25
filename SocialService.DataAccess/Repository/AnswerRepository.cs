@@ -72,7 +72,7 @@ namespace SocialService.DataAccess.Repository
         public async Task IncreaseAnswerLikes(int answerId)
         {
             var answer = await GetAnswerById(answerId);
-            answer.Likes += 1;
+            answer.Likes++;
             await _context.SaveChangesAsync();
         }
 
@@ -81,7 +81,7 @@ namespace SocialService.DataAccess.Repository
             var answer = await GetAnswerById(answerId);
             if(answer.Likes == 0)
                 return;
-            answer.Likes -= 1;
+            answer.Likes--;
             await _context.SaveChangesAsync();
         }
 
@@ -89,6 +89,7 @@ namespace SocialService.DataAccess.Repository
         {
             var answer = await GetAnswerById(answerId);
             answer.Body = newBody;
+            answer.EditedOn = DateTime.UtcNow;
             await _context.SaveChangesAsync();
         }
 

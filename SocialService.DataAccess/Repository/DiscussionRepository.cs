@@ -60,8 +60,8 @@ namespace SocialService.DataAccess.Repository
         {
             return _context.Discussions
                     .AsNoTracking()
-                    .Page(page, size)
                     .OrderDiscussionsBy(orderBy)
+                    .Page(page, size)
                     .Select(d => _mapper.Map<Discussion>(d));
         }
 

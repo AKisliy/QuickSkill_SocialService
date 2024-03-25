@@ -50,7 +50,9 @@ public partial class SocialServiceContext : DbContext
             entity.Property(e => e.Likes)
                 .HasDefaultValue(0)
                 .HasColumnName("likes");
-            entity.Property(e => e.PublishedOn).HasColumnName("publishedon");
+            entity.Property(e => e.PublishedOn)
+                .HasColumnName("publishedon")
+                .HasDefaultValue(DateTime.UtcNow);
             entity.Property(e => e.EditedOn).HasColumnName("editedon");
             entity.Property(e => e.UserId)
                 .ValueGeneratedOnAdd()
@@ -77,9 +79,12 @@ public partial class SocialServiceContext : DbContext
             entity.Property(e => e.Likes)
                 .HasDefaultValue(0)
                 .HasColumnName("likes");
-            entity.Property(e => e.PublishedOn).HasColumnName("publishedon");
+            entity.Property(e => e.PublishedOn)
+                .HasColumnName("publishedon")
+                .HasDefaultValue(DateTime.UtcNow);
             entity.Property(e => e.UserId).HasColumnName("userid");
             entity.Property(e => e.EditedOn).HasColumnName("editedon");
+            entity.Property(e => e.Body).HasColumnName("body");
 
             entity.HasOne(d => d.Lecture).WithMany(p => p.Comments)
                 .HasForeignKey(d => d.LectureId)
@@ -106,7 +111,9 @@ public partial class SocialServiceContext : DbContext
             entity.Property(e => e.Likes)
                 .HasDefaultValue(0)
                 .HasColumnName("likes");
-            entity.Property(e => e.PublishedOn).HasColumnName("publishedon");
+            entity.Property(e => e.PublishedOn)
+                .HasColumnName("publishedon")
+                .HasDefaultValue(DateTime.UtcNow);
             entity.Property(e => e.Title).HasColumnName("title");
 
             entity.HasOne(d => d.Author).WithMany(p => p.Discussions)

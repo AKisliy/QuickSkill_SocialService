@@ -10,9 +10,11 @@ public class CommentEntity
 
     public int Likes { get; set; }
 
-    public DateOnly PublishedOn { get; set; }
+    public string Body { get; set; } = null!;
 
-    public DateOnly? EditedOn { get; set; }
+    public DateTime PublishedOn { get; set; }
+
+    public DateTime? EditedOn { get; set; }
 
     public virtual Lecture Lecture { get; set; } = null!;
 

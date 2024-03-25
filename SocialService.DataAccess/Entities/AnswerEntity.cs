@@ -15,9 +15,9 @@ public class AnswerEntity
 
     public int Likes { get; set; }
 
-    public DateOnly PublishedOn { get; set; }
+    public DateTime PublishedOn { get; set; }
 
-    public DateOnly? EditedOn { get; set; }
+    public DateTime? EditedOn { get; set; }
 
     public virtual DiscussionEntity Discussion { get; set; } = null!;
 

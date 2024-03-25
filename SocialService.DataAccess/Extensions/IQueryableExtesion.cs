@@ -28,6 +28,17 @@ namespace SocialService.DataAccess.Extensions
             };
         }
 
+        public static IQueryable<CommentEntity> OrderCommentsBy(this IQueryable<CommentEntity> comments, OrderByOptions option)
+        {
+            return option switch
+            {
+                OrderByOptions.SimpleOrder => comments.OrderBy(c => c.Id),
+                OrderByOptions.ByDate => comments.OrderBy(c => c.PublishedOn),
+                OrderByOptions.ByLikes => comments.OrderBy(c => c.Likes),
+                _ => throw new InvalidOperationException($"No such option {option} to order")
+            };
+        }
+
         public static IQueryable<T> Page<T>(this IQueryable<T> query, int pageNumZeroStart, int pageSize)
         {
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(pageSize);
