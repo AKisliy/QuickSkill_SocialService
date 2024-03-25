@@ -10,14 +10,12 @@ namespace SocialService.DataAccess.Repository
 {
     public class DiscussionRepository : IDiscussionRepository
     {
-        private SocialServiceContext _context;
-        private IAnswerRepository _answerRepository;
-        private IMapper _mapper;
+        private readonly SocialServiceContext _context;
+        private readonly IMapper _mapper;
 
-        public DiscussionRepository(SocialServiceContext context, IAnswerRepository answerRepository, IMapper mapper)
+        public DiscussionRepository(SocialServiceContext context, IMapper mapper)
         {
             _context = context;
-            _answerRepository = answerRepository;
             _mapper = mapper;
         }
 
@@ -32,6 +30,14 @@ namespace SocialService.DataAccess.Repository
             await _context.Discussions.AddAsync(discussion);
             await _context.SaveChangesAsync();
             return discussion.Id;
+        }
+
+        public async Task<Discussion> GetDiscussonById(int id)
+        {
+            var discussion = await _context.Discussions
+                                    .AsNoTracking()
+                                    .FirstOrDefaultAsync(d => d.Id == id) ?? throw new NotFoundException($"No discusson with id: {id}");
+            return _mapper.Map<Discussion>(discussion);
         }
 
         public async Task DeleteDiscussion(int discussionId)
@@ -61,21 +67,21 @@ namespace SocialService.DataAccess.Repository
 
         public async Task IncreaseDiscussionLikes(int discussionId)
         {
-            var discussion = await GetDisscussionById(discussionId);
+            var discussion = await GetTrackedDisscussionById(discussionId);
             ++discussion.Likes;
             await _context.SaveChangesAsync();
         }
 
         public async Task DecreaseDiscussionLikes(int discussionId)
         {
-            var discussion = await GetDisscussionById(discussionId);
+            var discussion = await GetTrackedDisscussionById(discussionId);
             if(discussion.Likes == 0)
                 return;
             --discussion.Likes;
             await _context.SaveChangesAsync();
         }
 
-        private async Task<DiscussionEntity> GetDisscussionById(int id)
+        private async Task<DiscussionEntity> GetTrackedDisscussionById(int id)
         {
             return await _context.Discussions.FirstOrDefaultAsync(d => d.Id == id) ??
                     throw new NotFoundException($"No discussion with id: {id}");

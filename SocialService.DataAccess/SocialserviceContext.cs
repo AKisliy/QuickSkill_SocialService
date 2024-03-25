@@ -23,7 +23,7 @@ public partial class SocialServiceContext : DbContext
 
     public virtual DbSet<Leaderboard> Leaderboards { get; set; }
 
-    public virtual DbSet<League> Leagues { get; set; }
+    public virtual DbSet<LeagueEntity> Leagues { get; set; }
 
     public virtual DbSet<Lecture> Lectures { get; set; }
 
@@ -149,9 +149,12 @@ public partial class SocialServiceContext : DbContext
                 .HasConstraintName("leaderboard_leagueid_fkey");
         });
 
-        modelBuilder.Entity<League>(entity =>
+        modelBuilder.Entity<LeagueEntity>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("league_pkey");
+
+            entity.HasIndex(e => e.LeagueName, "name_unique").IsUnique();
+            entity.HasIndex(e => e.HierarchyPlace, "place_unique").IsUnique();
 
             entity.ToTable("league");
 

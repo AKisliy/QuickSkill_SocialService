@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace SocialService.DataAccess;
 
-namespace SocialService.DataAccess;
-
-public partial class League
+public class LeagueEntity
 {
     public int Id { get; set; }
 
