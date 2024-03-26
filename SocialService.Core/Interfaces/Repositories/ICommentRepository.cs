@@ -17,6 +17,6 @@ namespace SocialService.Core.Interfaces.Repositories
 
         public Task Edit(int id, string newBody);
 
-        public IEnumerable<Comment> GetCommentsPage(int lectureId, int page, int size, OrderByOptions options = OrderByOptions.ByDate);
+        public Task<IEnumerable<Comment>> GetCommentsPage(int lectureId, int page, int size, OrderByOptions options = OrderByOptions.ByDate);
     }
 }

@@ -18,8 +18,10 @@ namespace SocialService.Core.Interfaces
 
         public Task GiveUserXp(int userId, int xpCnt);
 
-        public IEnumerable<User> GetUsersByUsername(string userName);
+        public IEnumerable<User> GetUsersByUsername(string userName, int page, int pageSize = 10);
 
         public Task<User[]> GetRecommendation(int userId, int cnt = 10);
+
+        public Task<bool> HasUserWithId(int userId);
     }
 }

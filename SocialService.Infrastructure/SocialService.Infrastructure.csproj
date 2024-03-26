@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="EventBus.RabbitMQ.Standard" Version="3.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SocialService.Core\SocialService.Core.csproj" />
+  </ItemGroup>
+
 </Project>

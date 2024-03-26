@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SocialService.Core;
 using SocialService.Core.Interfaces;
 using SocialService.Core.Models;
+using SocialService.DataAccess.Extensions;
 
 namespace SocialService.DataAccess.Repository
 {
@@ -83,13 +84,14 @@ namespace SocialService.DataAccess.Repository
             await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<User> GetUsersByUsername(string userName)
+        public IEnumerable<User> GetUsersByUsername(string userName, int page, int pageSize = 10)
         {
             return _context.Users
                 .AsNoTracking()
                 .Where(u => u.Username.StartsWith(userName))
                 .OrderByDescending(u => u.Username == userName)
                 .ThenBy(u => u.Username)
+                .Page(page, pageSize)
                 .Select(u => _mapper.Map<User>(u));
         }
 
@@ -107,7 +109,7 @@ namespace SocialService.DataAccess.Repository
             return suggestion;
         }
 
-        private async Task<bool> HasUserWithId(int userId)
+        public async Task<bool> HasUserWithId(int userId)
         {
             return await _context.Users.AnyAsync(u => u.Id == userId);
         }

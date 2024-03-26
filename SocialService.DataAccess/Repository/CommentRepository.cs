@@ -2,6 +2,7 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using SocialService.Core;
 using SocialService.Core.Enums;
+using SocialService.Core.Interfaces;
 using SocialService.Core.Interfaces.Repositories;
 using SocialService.Core.Models;
 using SocialService.DataAccess.Extensions;
@@ -12,15 +13,23 @@ namespace SocialService.DataAccess.Repository
     {
         private readonly SocialServiceContext _context;
         private readonly IMapper _mapper;
+        private readonly ILectureRepository _lectureRepository;
+        private readonly IUserRepository _userRepository;
 
-        public CommentRepository(SocialServiceContext context, IMapper mapper)
+        public CommentRepository(SocialServiceContext context, ILectureRepository lectureRepository, IUserRepository userRepository, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
+            _lectureRepository = lectureRepository;
+            _userRepository = userRepository;
         }
 
         public async Task<int> Create(int userId, int lectureId, string body)
         {
+            if(!await _lectureRepository.HasLectureWithId(lectureId))
+                throw new NotFoundException($"No lecture with id: {lectureId}");
+            if(!await _userRepository.HasUserWithId(userId))
+                throw new NotFoundException($"No user with id: {userId}");
             var comment = new CommentEntity
             {
                 UserId = userId,
@@ -77,9 +86,10 @@ namespace SocialService.DataAccess.Repository
                     .SetProperty(c => c.EditedOn, DateTime.UtcNow));
         }
 
-        public IEnumerable<Comment> GetCommentsPage(int lectureId, int page, int size, OrderByOptions options = OrderByOptions.ByDate)
+        public async Task<IEnumerable<Comment>> GetCommentsPage(int lectureId, int page, int size, OrderByOptions options = OrderByOptions.ByDate)
         {
-            // TODO - добавить проверку на существование лекции
+            if(!await _lectureRepository.HasLectureWithId(lectureId))
+                throw new NotFoundException($"No lecture with id: {lectureId}");
             return _context.Comments
                     .AsNoTracking()
                     .Where(c => c.LectureId == lectureId)

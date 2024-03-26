@@ -45,3 +45,10 @@
 /Users/alexeykiselev/SocialService/SocialService.WebApi/obj/Debug/net8.0/SocialService.WebApi.pdb
 /Users/alexeykiselev/SocialService/SocialService.WebApi/obj/Debug/net8.0/SocialService.WebApi.genruntimeconfig.cache
 /Users/alexeykiselev/SocialService/SocialService.WebApi/obj/Debug/net8.0/ref/SocialService.WebApi.dll
+/Users/alexeykiselev/SocialService/SocialService.WebApi/bin/Debug/net8.0/EventBus.Base.Standard.dll
+/Users/alexeykiselev/SocialService/SocialService.WebApi/bin/Debug/net8.0/EventBus.RabbitMQ.Standard.dll
+/Users/alexeykiselev/SocialService/SocialService.WebApi/bin/Debug/net8.0/Newtonsoft.Json.dll
+/Users/alexeykiselev/SocialService/SocialService.WebApi/bin/Debug/net8.0/Polly.dll
+/Users/alexeykiselev/SocialService/SocialService.WebApi/bin/Debug/net8.0/RabbitMQ.Client.dll
+/Users/alexeykiselev/SocialService/SocialService.WebApi/bin/Debug/net8.0/SocialService.Infrastructure.dll
+/Users/alexeykiselev/SocialService/SocialService.WebApi/bin/Debug/net8.0/SocialService.Infrastructure.pdb

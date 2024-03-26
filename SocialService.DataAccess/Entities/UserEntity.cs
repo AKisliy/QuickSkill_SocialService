@@ -8,19 +8,21 @@ public class UserEntity
 
     public string LastName { get; set; } = null!;
 
-    public string? Status { get; set; }
+    public string Status { get; set; } = null!;
 
     public string Username { get; set; } = null!;
 
-    public int LeaderboardId { get; set; }
+    public int? LeaderboardId { get; set; }
 
-    public int? Xp { get; set; }
+    public int? LeagueId { get; set; }
 
-    public int? WeeklyXp { get; set; }
+    public int Xp { get; set; }
 
-    public int? Subscribers { get; set; }
+    public int WeeklyXp { get; set; }
 
-    public int? Subscriptions { get; set; }
+    public int Subscribers { get; set; }
+
+    public int Subscriptions { get; set; }
 
     public virtual ICollection<AnswerEntity> Answers { get; set; } = new List<AnswerEntity>();
 
@@ -30,5 +32,5 @@ public class UserEntity
 
     public virtual ICollection<Feedback> Feedbacks { get; set; } = new List<Feedback>();
 
-    public virtual Leaderboard Leaderboard { get; set; } = null!;
+    // public virtual Leaderboard? Leaderboard { get; set; }
 }

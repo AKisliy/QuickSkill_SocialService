@@ -152,6 +152,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.3, )"
@@ -175,6 +179,69 @@
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[8.0.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/opt/homebrew/Cellar/dotnet/8.0.1/libexec/sdk/8.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/alexeykiselev/SocialService/SocialService.Infrastructure/SocialService.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/alexeykiselev/SocialService/SocialService.Infrastructure/SocialService.Infrastructure.csproj",
+        "projectName": "SocialService.Infrastructure",
+        "projectPath": "/Users/alexeykiselev/SocialService/SocialService.Infrastructure/SocialService.Infrastructure.csproj",
+        "packagesPath": "/Users/alexeykiselev/.nuget/packages/",
+        "outputPath": "/Users/alexeykiselev/SocialService/SocialService.Infrastructure/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/alexeykiselev/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/Users/alexeykiselev/SocialService/SocialService.Core/SocialService.Core.csproj": {
+                "projectPath": "/Users/alexeykiselev/SocialService/SocialService.Core/SocialService.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "EventBus.RabbitMQ.Standard": {
+              "target": "Package",
+              "version": "[3.1.0, )"
             }
           },
           "imports": [
@@ -227,6 +294,9 @@
               },
               "/Users/alexeykiselev/SocialService/SocialService.DataAccess/SocialService.DataAccess.csproj": {
                 "projectPath": "/Users/alexeykiselev/SocialService/SocialService.DataAccess/SocialService.DataAccess.csproj"
+              },
+              "/Users/alexeykiselev/SocialService/SocialService.Infrastructure/SocialService.Infrastructure.csproj": {
+                "projectPath": "/Users/alexeykiselev/SocialService/SocialService.Infrastructure/SocialService.Infrastructure.csproj"
               }
             }
           }
@@ -244,6 +314,22 @@
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[12.0.1, )"
+            },
+            "EventBus.RabbitMQ.Standard": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "Hangfire.AspNetCore": {
+              "target": "Package",
+              "version": "[1.8.11, )"
+            },
+            "Hangfire.Core": {
+              "target": "Package",
+              "version": "[1.8.11, )"
+            },
+            "Hangfire.PostgreSql": {
+              "target": "Package",
+              "version": "[1.20.8, )"
             },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",

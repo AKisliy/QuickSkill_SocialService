@@ -1,8 +1,20 @@
 {
   "version": 2,
-  "dgSpecHash": "eNKXz/x1d9oUPInyEoBc11VkX4lFTFkXnqUbVZ2DF8ViqWVS8uxPoiS4j/oNJlP06F5DcUyz4I9bsVfKIGYZXA==",
+  "dgSpecHash": "X93kS0fJ/vXK5jcmfYRoGOWwh98Aty7RrNrhUPPyvCLRgnuwEV0LvjQtoe/6qQpRjQvbllrwMF2OH6WAEc/pMA==",
   "success": true,
   "projectFilePath": "/Users/alexeykiselev/SocialService/SocialService.Infrastructure/SocialService.Infrastructure.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/alexeykiselev/.nuget/packages/eventbus.base.standard/1.0.2/eventbus.base.standard.1.0.2.nupkg.sha512",
+    "/Users/alexeykiselev/.nuget/packages/eventbus.rabbitmq.standard/3.1.0/eventbus.rabbitmq.standard.3.1.0.nupkg.sha512",
+    "/Users/alexeykiselev/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
+    "/Users/alexeykiselev/.nuget/packages/microsoft.extensions.dependencyinjection/3.1.0/microsoft.extensions.dependencyinjection.3.1.0.nupkg.sha512",
+    "/Users/alexeykiselev/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/3.1.0/microsoft.extensions.dependencyinjection.abstractions.3.1.0.nupkg.sha512",
+    "/Users/alexeykiselev/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512",
+    "/Users/alexeykiselev/.nuget/packages/polly/7.2.1/polly.7.2.1.nupkg.sha512",
+    "/Users/alexeykiselev/.nuget/packages/rabbitmq.client/6.2.1/rabbitmq.client.6.2.1.nupkg.sha512",
+    "/Users/alexeykiselev/.nuget/packages/system.memory/4.5.4/system.memory.4.5.4.nupkg.sha512",
+    "/Users/alexeykiselev/.nuget/packages/system.threading.channels/4.7.1/system.threading.channels.4.7.1.nupkg.sha512",
+    "/Users/alexeykiselev/.nuget/packages/system.valuetuple/4.5.0/system.valuetuple.4.5.0.nupkg.sha512"
+  ],
   "logs": []
 }

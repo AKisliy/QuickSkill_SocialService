@@ -16,7 +16,7 @@ public class CommentEntity
 
     public DateTime? EditedOn { get; set; }
 
-    public virtual Lecture Lecture { get; set; } = null!;
+    public virtual LectureEntity Lecture { get; set; } = null!;
 
     public virtual UserEntity User { get; set; } = null!;
 }

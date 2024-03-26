@@ -21,18 +21,18 @@ public partial class SocialServiceContext : DbContext
 
     public virtual DbSet<Feedback> Feedbacks { get; set; }
 
-    public virtual DbSet<Leaderboard> Leaderboards { get; set; }
+    // public virtual DbSet<Leaderboard> Leaderboards { get; set; }
 
     public virtual DbSet<LeagueEntity> Leagues { get; set; }
 
-    public virtual DbSet<Lecture> Lectures { get; set; }
+    public virtual DbSet<LectureEntity> Lectures { get; set; }
 
     public virtual DbSet<Subscriber> Subscribers { get; set; }
 
     public virtual DbSet<UserEntity> Users { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=socialservice;Username=alexeykiselev;Password=kisliy");
+    // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //     => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=socialservice;Username=alexeykiselev;Password=kisliy");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -140,21 +140,21 @@ public partial class SocialServiceContext : DbContext
                 .HasConstraintName("feedback_userid_fkey");
         });
 
-        modelBuilder.Entity<Leaderboard>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("leaderboard_pkey");
+        // modelBuilder.Entity<Leaderboard>(entity =>
+        // {
+        //     entity.HasKey(e => e.Id).HasName("leaderboard_pkey");
 
-            entity.ToTable("leaderboard");
+        //     entity.ToTable("leaderboard");
 
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.LeagueId)
-                .ValueGeneratedOnAdd()
-                .HasColumnName("leagueid");
+        //     entity.Property(e => e.Id).HasColumnName("id");
+        //     entity.Property(e => e.LeagueId)
+        //         .ValueGeneratedOnAdd()
+        //         .HasColumnName("leagueid");
 
-            entity.HasOne(d => d.League).WithMany(p => p.Leaderboards)
-                .HasForeignKey(d => d.LeagueId)
-                .HasConstraintName("leaderboard_leagueid_fkey");
-        });
+        //     entity.HasOne(d => d.League).WithMany(p => p.Leaderboards)
+        //         .HasForeignKey(d => d.LeagueId)
+        //         .HasConstraintName("leaderboard_leagueid_fkey");
+        // });
 
         modelBuilder.Entity<LeagueEntity>(entity =>
         {
@@ -173,7 +173,7 @@ public partial class SocialServiceContext : DbContext
             entity.Property(e => e.Photo).HasColumnName("photo");
         });
 
-        modelBuilder.Entity<Lecture>(entity =>
+        modelBuilder.Entity<LectureEntity>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("lecture_pkey");
 
@@ -222,6 +222,9 @@ public partial class SocialServiceContext : DbContext
             entity.Property(e => e.LeaderboardId)
                 .ValueGeneratedOnAdd()
                 .HasColumnName("leaderboardid");
+            entity.Property(e => e.LeagueId)
+                .ValueGeneratedOnAdd()
+                .HasColumnName("leagueid");
             entity.Property(e => e.Status)
                 .HasMaxLength(10)
                 .HasDefaultValueSql("'Default'::character varying")
@@ -242,10 +245,10 @@ public partial class SocialServiceContext : DbContext
                 .HasDefaultValue(0)
                 .HasColumnName("xp");
 
-            entity.HasOne(d => d.Leaderboard).WithMany(p => p.Users)
-                .HasForeignKey(d => d.LeaderboardId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("users_leaderboardid_fkey");
+            // entity.HasOne(d => d.Leaderboard).WithMany(p => p.Users)
+            //     .HasForeignKey(d => d.LeaderboardId)
+            //     .OnDelete(DeleteBehavior.ClientSetNull)
+            //     .HasConstraintName("users_leaderboardid_fkey");
         });
 
         OnModelCreatingPartial(modelBuilder);
