@@ -5,7 +5,7 @@ namespace SocialService.Core.Interfaces.Repositories
 {
     public interface IAnswerRepository
     {
-        public Task CreateAnswer(int userId, int discussionId, string body);
+        public Task<int> CreateAnswer(int userId, int discussionId, string body);
 
         public Task DeleteAnswer(int id);
 

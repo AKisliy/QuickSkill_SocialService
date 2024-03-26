@@ -21,19 +21,20 @@ namespace SocialService.DataAccess.Repository
             _mapper = mapper;
         }
 
-        public async Task CreateAnswer(int userId, int discussionId, string body)
+        public async Task<int> CreateAnswer(int userId, int discussionId, string body)
         {
             var hasDiscussion = await _discussionRepository.HasDiscussionWithId(discussionId);
             if(!hasDiscussion)
                 throw new NotFoundException($"No discussion with thid id: {discussionId}");
-            await _context.Answers.AddAsync(
-                new AnswerEntity
-                {
-                    UserId = userId,
-                    DiscussionId = discussionId,
-                    Body = body
-                });
+            var answer = new AnswerEntity
+            {
+                UserId = userId,
+                DiscussionId = discussionId,
+                Body = body
+            };
+            await _context.Answers.AddAsync(answer);
             await _context.SaveChangesAsync();
+            return answer.Id;
         }
 
         public async Task DeleteAnswer(int id)
@@ -64,25 +65,25 @@ namespace SocialService.DataAccess.Repository
             return _context.Answers
                 .AsNoTracking()
                 .Where(a => a.DiscussionId == discussionId)
-                .Page(page, size)
                 .OrderAnswersBy(orderBy)
+                .Page(page, size)
                 .Select(a => _mapper.Map<Answer>(a));
         }
 
         public async Task IncreaseAnswerLikes(int answerId)
         {
-            var answer = await GetAnswerById(answerId);
-            answer.Likes++;
-            await _context.SaveChangesAsync();
+            await _context.Answers
+                    .Where(a => a.Id == answerId)
+                    .ExecuteUpdateAsync(a => a
+                        .SetProperty(a => a.Likes, a => a.Likes + 1));
         }
 
         public async Task DecreaseAnswerLikes(int answerId)
         {
-            var answer = await GetAnswerById(answerId);
-            if(answer.Likes == 0)
-                return;
-            answer.Likes--;
-            await _context.SaveChangesAsync();
+            await _context.Answers
+                    .Where(a => a.Id == answerId)
+                    .ExecuteUpdateAsync(a => a
+                        .SetProperty(a => a.Likes, a => a.Likes == 0 ? 0 : a.Likes - 1));
         }
 
         public async Task EditAnswer(int answerId, string newBody)

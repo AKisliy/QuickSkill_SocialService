@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace SocialService.DataAccess;
 
@@ -11,8 +8,7 @@ public partial class SocialServiceContext : DbContext
     {
     }
 
-    public SocialServiceContext(DbContextOptions<SocialServiceContext> options)
-        : base(options)
+    public SocialServiceContext(DbContextOptions<SocialServiceContext> options): base(options)
     {
     }
 
