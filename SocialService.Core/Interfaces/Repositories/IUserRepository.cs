@@ -16,9 +16,11 @@ namespace SocialService.Core.Interfaces
 
         public Task Unsubscribe(int userId, int subscriptionId);
 
+        public Task<List<int>> GetSubscriptionsIds(int userId);
+
         public Task GiveUserXp(int userId, int xpCnt);
 
-        public IEnumerable<User> GetUsersByUsername(string userName, int page, int pageSize = 10);
+        public Task<List<User>> GetUsersByUsername(string userName, int page, int pageSize = 10);
 
         public Task<User[]> GetRecommendation(int userId, int cnt = 10);
 

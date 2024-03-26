@@ -165,7 +165,9 @@ public partial class SocialServiceContext : DbContext
 
             entity.ToTable("league");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasColumnName("id")
+                .ValueGeneratedOnAdd();
             entity.Property(e => e.HierarchyPlace).HasColumnName("hierarchyplace");
             entity.Property(e => e.LeagueName)
                 .HasMaxLength(50)
@@ -220,10 +222,10 @@ public partial class SocialServiceContext : DbContext
                 .HasMaxLength(100)
                 .HasColumnName("lastname");
             entity.Property(e => e.LeaderboardId)
-                .ValueGeneratedOnAdd()
                 .HasColumnName("leaderboardid");
             entity.Property(e => e.LeagueId)
                 .ValueGeneratedOnAdd()
+                //.HasDefaultValue(1)
                 .HasColumnName("leagueid");
             entity.Property(e => e.Status)
                 .HasMaxLength(10)
@@ -244,6 +246,12 @@ public partial class SocialServiceContext : DbContext
             entity.Property(e => e.Xp)
                 .HasDefaultValue(0)
                 .HasColumnName("xp");
+
+
+            entity.HasOne(d => d.League).WithMany()
+                .HasForeignKey(d => d.LeagueId)
+                //.OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_users_league");
 
             // entity.HasOne(d => d.Leaderboard).WithMany(p => p.Users)
             //     .HasForeignKey(d => d.LeaderboardId)

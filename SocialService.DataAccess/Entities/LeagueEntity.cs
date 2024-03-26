@@ -10,5 +10,5 @@ public class LeagueEntity
 
     public int HierarchyPlace { get; set; }
 
-    // public virtual ICollection<Leaderboard> Leaderboards { get; set; } = new List<Leaderboard>();
+    public virtual ICollection<UserEntity> Users { get; set; } = new List<UserEntity>();
 }

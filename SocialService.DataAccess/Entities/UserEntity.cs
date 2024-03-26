@@ -1,4 +1,6 @@
-﻿namespace SocialService.DataAccess;
+﻿using SocialService.Core.Models;
+
+namespace SocialService.DataAccess;
 
 public class UserEntity
 {
@@ -32,5 +34,5 @@ public class UserEntity
 
     public virtual ICollection<Feedback> Feedbacks { get; set; } = new List<Feedback>();
 
-    // public virtual Leaderboard? Leaderboard { get; set; }
+    public virtual LeagueEntity? League { get; set; }
 }

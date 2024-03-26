@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SocialService.DataAccess")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+960fd201f521fef942ecc9c1af63b20a2a9e9e32")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+aca0bc681595bfa463928d2145a2e34a7eff8815")]
 [assembly: System.Reflection.AssemblyProductAttribute("SocialService.DataAccess")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SocialService.DataAccess")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

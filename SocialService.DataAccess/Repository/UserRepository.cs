@@ -21,6 +21,7 @@ namespace SocialService.DataAccess.Repository
         public async Task AddUser(User user)
         {
             var userEntity = _mapper.Map<UserEntity>(user);
+            userEntity.LeagueId = 1;
             await _context.AddAsync(userEntity);
             await _context.SaveChangesAsync();
         }
@@ -76,6 +77,15 @@ namespace SocialService.DataAccess.Repository
             await _context.SaveChangesAsync();
         }
 
+        public async Task<List<int>> GetSubscriptionsIds(int userId)
+        {
+            return await _context.Subscribers
+                            .AsNoTracking()
+                            .Where(s => s.UserId == userId)
+                            .Select(s => s.SubscriptionId)
+                            .ToListAsync();
+        }
+
         public async Task GiveUserXp(int userId, int xpCnt)
         {
             var user = await GetTrackedUserById(userId);
@@ -84,15 +94,16 @@ namespace SocialService.DataAccess.Repository
             await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<User> GetUsersByUsername(string userName, int page, int pageSize = 10)
+        public async Task<List<User>> GetUsersByUsername(string userName, int page, int pageSize = 10)
         {
-            return _context.Users
+            return await _context.Users
                 .AsNoTracking()
                 .Where(u => u.Username.StartsWith(userName))
                 .OrderByDescending(u => u.Username == userName)
                 .ThenBy(u => u.Username)
                 .Page(page, pageSize)
-                .Select(u => _mapper.Map<User>(u));
+                .Select(u => _mapper.Map<User>(u))
+                .ToListAsync();
         }
 
         public async Task<User[]> GetRecommendation(int userId, int cnt = 10)

@@ -22,5 +22,6 @@ namespace SocialService.Core.Models
 
         public int? Subscriptions { get; set; }
 
+        public List<int> SubscritptionIds { get; set; } = [];
     }
 }

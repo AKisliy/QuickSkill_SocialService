@@ -11,7 +11,7 @@ namespace SocialService.WebApi.Extensions
         {
             services.AddHangfire(config => config.UsePostgreSqlStorage(configuration.GetConnectionString("DefaultConnection")));
             services.AddHangfireServer();
-            services.AddSingleton<ILeaderboardService, LeaderboardService>();
+            services.AddScoped<ILeaderboardService, LeaderboardService>();
         }
 
         public static IApplicationBuilder ConfigureHangfireTasks(this IApplicationBuilder app)
