@@ -16,7 +16,7 @@ namespace SocialService.Application.Services
         // just for testing 
         public async Task AddUser(int id, string firstName, string lastName, string userName)
         {
-            User user = new User{ Id = id, FirstName = firstName, LastName = lastName, Username = userName};
+            User user = new User{ FirstName = firstName, LastName = lastName, Username = userName};
             await _userRepository.AddUser(user);
         }
 

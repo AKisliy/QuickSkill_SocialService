@@ -30,7 +30,7 @@ builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
-builder.Services.AddHangfireToApp(builder.Configuration);
+//builder.Services.AddHangfireToApp(builder.Configuration);
 
 // var rabbitMqOptions = builder.Configuration.GetSection("RabbitMq").Get<RabbitMqOptions>();
 // builder.Services.AddRabbitMqConnection(rabbitMqOptions);
@@ -46,7 +46,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 //app.ConfigureEventBus();
-app.UseHangfireDashboard();
+//app.UseHangfireDashboard();
 app.UseExceptionHandler();
 app.UseRouting();
 app.UseHttpsRedirection();

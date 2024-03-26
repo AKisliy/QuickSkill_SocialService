@@ -22,9 +22,9 @@ namespace SocialService.WebApi.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult CreateUser(AddUserDto user)
+        public async Task<IActionResult> CreateUser(AddUserDto user)
         {
-            _userService.AddUser(user.Id, user.FirstName, user.LastName, user.Username);
+            await _userService.AddUser(user.Id, user.FirstName, user.LastName, user.Username);
             return Ok();
         }
 
