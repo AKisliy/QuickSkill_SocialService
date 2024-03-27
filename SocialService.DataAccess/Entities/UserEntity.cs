@@ -26,6 +26,8 @@ public class UserEntity
 
     public int Subscriptions { get; set; }
 
+    public string? Photo { get; set; }
+
     public virtual ICollection<AnswerEntity> Answers { get; set; } = new List<AnswerEntity>();
 
     public virtual ICollection<CommentEntity> Comments { get; set; } = new List<CommentEntity>();

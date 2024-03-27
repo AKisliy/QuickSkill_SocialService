@@ -98,6 +98,10 @@
             "EventBus.RabbitMQ.Standard": {
               "target": "Package",
               "version": "[3.1.0, )"
+            },
+            "MassTransit": {
+              "target": "Package",
+              "version": "[8.2.0, )"
             }
           },
           "imports": [

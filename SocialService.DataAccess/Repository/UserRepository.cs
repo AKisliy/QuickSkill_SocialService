@@ -1,6 +1,7 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using SocialService.Core;
+using SocialService.Core.Exceptions;
 using SocialService.Core.Interfaces;
 using SocialService.Core.Models;
 using SocialService.DataAccess.Extensions;
@@ -51,14 +52,16 @@ namespace SocialService.DataAccess.Repository
             return _mapper.Map<User>(user);
         }
 
-        public async Task Subscribe(int userId, int subscritptionId)
+        public async Task Subscribe(int userId, int subscriptionId)
         {
+            if(await _context.Subscribers.AnyAsync(s => s.UserId == userId && s.SubscriptionId == subscriptionId))
+                throw new BadRequestException($"User {userId} already subscribed on {subscriptionId}");
             var user = await GetTrackedUserById(userId);
-            var sub = await GetTrackedUserById(subscritptionId);
+            var sub = await GetTrackedUserById(subscriptionId);
             await _context.Subscribers.AddAsync(
                 new Subscriber{
                     UserId = userId,
-                    SubscriptionId = subscritptionId
+                    SubscriptionId = subscriptionId
                 });
             ++user.Subscriptions;
             ++sub.Subscribers;
@@ -67,6 +70,8 @@ namespace SocialService.DataAccess.Repository
 
         public async Task Unsubscribe(int userId, int subscriptionId)
         {
+            if(!await _context.Subscribers.AnyAsync(s => s.UserId == userId && s.SubscriptionId == subscriptionId))
+                throw new BadRequestException($"User {userId} not subscribed on {subscriptionId}");
             var user = await GetTrackedUserById(userId);
             var sub = await GetTrackedUserById(subscriptionId);
             await _context.Subscribers
@@ -109,10 +114,10 @@ namespace SocialService.DataAccess.Repository
         public async Task<User[]> GetRecommendation(int userId, int cnt = 10)
         {
             var user = await GetUserById(userId);
-            int leaderboardId = user.LeaderboardId;
+            int? leaderboardId = user.LeaderboardId;
             var suggestion = await _context.Users
                                 .AsNoTracking()
-                                .Where(u => u.LeaderboardId == leaderboardId)
+                                .Where(u => u.LeaderboardId == leaderboardId && u.Id != userId && u.LeaderboardId != null)
                                 .Take(cnt)
                                 .Select(u => _mapper.Map<User>(u))
                                 .ToArrayAsync();

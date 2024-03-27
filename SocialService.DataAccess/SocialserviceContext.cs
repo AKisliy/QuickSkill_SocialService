@@ -174,9 +174,8 @@ public partial class SocialServiceContext : DbContext
 
         modelBuilder.Entity<Subscriber>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("subscribers");
+            entity.HasKey(pc => new {pc.UserId, pc.SubscriptionId}).HasName("subscribers_pkey");
+            entity.ToTable("subscribers");
 
             entity.Property(e => e.SubscriptionId)
                 .ValueGeneratedOnAdd()
@@ -201,6 +200,7 @@ public partial class SocialServiceContext : DbContext
             entity.ToTable("users");
 
             entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Photo).HasColumnName("photo");
             entity.Property(e => e.FirstName)
                 .HasMaxLength(100)
                 .HasColumnName("firstname");

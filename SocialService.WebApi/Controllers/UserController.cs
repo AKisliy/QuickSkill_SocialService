@@ -21,6 +21,7 @@ namespace SocialService.WebApi.Controllers
             _mapper = mapper;
         }
 
+        // just for test purposes
         [HttpPost("add")]
         public async Task<IActionResult> CreateUser(AddUserDto user)
         {
@@ -28,22 +29,45 @@ namespace SocialService.WebApi.Controllers
             return Ok();
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetUserById(int id)
-        {
-            return Ok(id);
-        }
-
-        [HttpGet("search")]
-        public async Task<IActionResult> SearchUserByUsername([Required] string userName,[Required] int page, int pageSize = 5)
+        [HttpGet("{id}/search")]
+        public async Task<IActionResult> SearchUserByUsername(int id,[Required] string userName,[Required] int page, int pageSize = 5)
         {
             // here should probably be getting id from token
-            const int id = 0;
             var result = await _userService.SearchUserByUsername(id, userName, page, pageSize);
             var subs = await _userService.GetUserSubscriptionsId(id);
             return Ok(result.Select(u => _mapper.Map<UserSearchResponseDto>(u, opts =>
                 opts.AfterMap((src, dest) => dest.Subscribed = subs.Contains(((User)src).Id)
             ))));
+        }
+
+        /// <summary>
+        /// Get recommended subscriptions for user(based on leaderboard)
+        /// </summary>
+        /// <param name="pageSize">Count of users to get</param>
+        /// <returns>ID of badge + uri</returns>
+        /// <response code="200">Success</response>
+        /// <response code="400">User not found</response>
+        [HttpGet("{id}/reccomendation")]
+        public async Task<IActionResult> GetRecommendation(int id, int pageSize = 10)
+        {
+            var result = await _userService.GetRecommendationForUser(id, pageSize);
+            var subs = await _userService.GetUserSubscriptionsId(id);
+            return Ok(result.Select(u => _mapper.Map<UserSearchResponseDto>(u, opts =>
+                opts.AfterMap((src, dest) => dest.Subscribed = subs.Contains(((User)src).Id)))));
+        }
+
+        [HttpPatch("{userId}/subscribe/{id}")]
+        public async Task<IActionResult> SubscribeOnUser(int userId, int id)
+        {
+            await _userService.SubcribeOnUser(userId, id);
+            return Ok();
+        }
+
+        [HttpPatch("{userId}/unsubscribe/{id}")]
+        public async Task<IActionResult> Unsubscribe(int userId, int id)
+        {
+            await _userService.Unsubscribe(userId, id);
+            return Ok();
         }
     }
 }

@@ -1,8 +1,6 @@
-using EventBus.Base.Standard;
-
 namespace SocialService.Infrastructure
 {
-    public class UserCreatedEvent: IntegrationEvent
+    public class UserCreatedEvent
     {
         public int UserId { get; set; }
         
@@ -14,13 +12,6 @@ namespace SocialService.Infrastructure
 
         public string Username { get; set; } = null!;
 
-        public UserCreatedEvent(int userId, string firstName, string lastName, string status, string username) 
-        {
-            this.UserId = userId;
-            this.FirstName = firstName;
-            this.LastName = lastName;
-            this.Status = status;
-            this.Username = username;
-        }
+        public string Photo { get; set; } = null!;
     }
 }

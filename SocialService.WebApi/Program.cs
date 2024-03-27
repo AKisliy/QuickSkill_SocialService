@@ -1,6 +1,3 @@
-using EventBus.Base.Standard.Configuration;
-using EventBus.RabbitMQ.Standard.Configuration;
-using EventBus.RabbitMQ.Standard.Options;
 using Hangfire;
 using Microsoft.EntityFrameworkCore;
 using SocialService.Application.Services;
@@ -30,6 +27,7 @@ builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
+//builder.Services.AddMassTransitWithRabbitMQ();
 //builder.Services.AddHangfireToApp(builder.Configuration);
 
 // var rabbitMqOptions = builder.Configuration.GetSection("RabbitMq").Get<RabbitMqOptions>();

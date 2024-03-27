@@ -12,15 +12,17 @@ namespace SocialService.Core.Models
 
         public string Username { get; set; } = null!;
 
-        public int LeaderboardId { get; set; }
+        public int? LeaderboardId { get; set; }
 
-        public int? Xp { get; set; }
+        public int Xp { get; set; }
 
-        public int? WeeklyXp { get; set; }
+        public int WeeklyXp { get; set; }
 
-        public int? Subscribers { get; set; }
+        public int Subscribers { get; set; }
 
-        public int? Subscriptions { get; set; }
+        public int Subscriptions { get; set; }
+
+        public string? Photo { get; set; }
 
         public List<int> SubscritptionIds { get; set; } = [];
     }

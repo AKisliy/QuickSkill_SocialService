@@ -33,6 +33,21 @@ namespace SocialService.Application.Services
             return list;
         }
 
+        public async Task SubcribeOnUser(int id, int subId)
+        {
+            await _userRepository.Subscribe(id, subId);
+        }
+
+        public async Task Unsubscribe(int id, int subId)
+        {
+            await _userRepository.Unsubscribe(id, subId);
+        }
+
+        public async Task<User[]> GetRecommendationForUser(int id, int pageSize)
+        {
+            return await _userRepository.GetRecommendation(id, pageSize);
+        }
+
         public async Task<List<int>> GetUserSubscriptionsId(int userId)
         {
             return await _userRepository.GetSubscriptionsIds(userId);

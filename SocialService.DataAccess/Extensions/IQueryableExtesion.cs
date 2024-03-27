@@ -1,4 +1,3 @@
-using System.Security.Cryptography;
 using SocialService.Core.Enums;
 
 namespace SocialService.DataAccess.Extensions
@@ -43,7 +42,7 @@ namespace SocialService.DataAccess.Extensions
         {
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(pageSize);
             if (pageNumZeroStart != 0)
-                query.Skip(pageNumZeroStart * pageSize);
+                query = query.Skip(pageNumZeroStart * pageSize);
             return query.Take(pageSize);
         }
     }

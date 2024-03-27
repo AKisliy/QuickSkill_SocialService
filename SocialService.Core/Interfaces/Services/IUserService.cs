@@ -9,5 +9,11 @@ namespace SocialService.Core.Interfaces.Services
         public Task<List<int>> GetUserSubscriptionsId(int userId);
 
         public Task AddUser(int id, string firstName, string lastName, string userName);
+
+         public Task SubcribeOnUser(int id, int subId);
+
+         public Task Unsubscribe(int id, int subId);
+
+         public Task<User[]> GetRecommendationForUser(int id, int pageSize);
     }
 }
