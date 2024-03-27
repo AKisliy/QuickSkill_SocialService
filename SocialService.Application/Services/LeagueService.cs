@@ -21,6 +21,11 @@ namespace SocialService.Application.Services
             return await _repository.Create(league);
         }
 
+        public async Task<League> GetLeagueByName(string name)
+        {
+            return await _repository.GetLeagueByName(name);
+        }
+
         public IEnumerable<League> GetLeagues()
         {
             return _repository.GetLeagues();
@@ -28,9 +33,12 @@ namespace SocialService.Application.Services
 
         public async Task UpdateLeague(int id, string name, string photo, int hierarchyPlace)
         {
-            League league = await _repository.GetLeagueByName(name);
-            if(league.Id != id)
-                throw new ConflictException($"Name {name} is already taken");
+            if(await _repository.HasLeagueWithName(name))
+            {
+                League league = await _repository.GetLeagueByName(name);
+                if(league.Id != id)
+                    throw new ConflictException($"Name {name} is already taken");
+            }
             League l = new() { Id = id, LeagueName = name, Photo = photo, HierarchyPlace = hierarchyPlace};
             await _repository.Update(l);
         }

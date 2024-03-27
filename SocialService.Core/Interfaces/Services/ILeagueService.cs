@@ -13,5 +13,7 @@ namespace SocialService.Core.Interfaces.Services
         public Task DeleteLeague(string name);
 
         public Task SwapLeaguePlaces(string l1, string l2);
+
+        public Task<League> GetLeagueByName(string name);
     }
 }
