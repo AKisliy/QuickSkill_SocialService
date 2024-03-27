@@ -25,5 +25,9 @@ namespace SocialService.Core.Interfaces
         public Task<User[]> GetRecommendation(int userId, int cnt = 10);
 
         public Task<bool> HasUserWithId(int userId);
+
+        public Task<Dictionary<int, List<User>>> GetUserGroupedByLeague();
+
+        public Task UpdateUsersLeaderboards(Dictionary<int, List<User>> usersByLeagues);
     }
 }

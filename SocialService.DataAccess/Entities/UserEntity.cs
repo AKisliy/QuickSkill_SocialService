@@ -16,7 +16,7 @@ public class UserEntity
 
     public int? LeaderboardId { get; set; }
 
-    public int? LeagueId { get; set; }
+    public int LeagueId { get; set; }
 
     public int Xp { get; set; }
 

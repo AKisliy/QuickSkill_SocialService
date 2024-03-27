@@ -8,11 +8,13 @@ namespace SocialService.Core.Models
 
         public string LastName { get; set; } = null!;
 
-        public string? Status { get; set; }
+        public string Status { get; set; }
 
         public string Username { get; set; } = null!;
 
         public int? LeaderboardId { get; set; }
+
+        public int LeagueId { get; set; }
 
         public int Xp { get; set; }
 

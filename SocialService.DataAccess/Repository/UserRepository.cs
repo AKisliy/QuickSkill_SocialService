@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using SocialService.Core;
@@ -128,6 +129,19 @@ namespace SocialService.DataAccess.Repository
         public async Task<bool> HasUserWithId(int userId)
         {
             return await _context.Users.AnyAsync(u => u.Id == userId);
+        }
+
+        public async Task<Dictionary<int, List<User>>> GetUserGroupedByLeague()
+        {
+            return await _context.Users
+                            .AsNoTracking()
+                            .GroupBy(u => u.LeagueId)
+                            .ToDictionaryAsync(p => p.Key, p => p.Select(u => _mapper.Map<User>(u)).ToList());
+        }
+
+        public async Task UpdateUsersLeaderboards(Dictionary<int, List<User>> usersByLeagues)
+        {
+
         }
 
         private async Task<UserEntity> GetTrackedUserById(int userId)
