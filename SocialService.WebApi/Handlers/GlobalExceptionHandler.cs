@@ -1,6 +1,7 @@
 using System.Net;
 using Microsoft.AspNetCore.Diagnostics;
 using SocialService.Core;
+using SocialService.Core.Exceptions;
 using SocialService.WebApi.Dtos;
 
 namespace SocialService.WebApi.Handlers
@@ -16,8 +17,14 @@ namespace SocialService.WebApi.Handlers
             };
             switch(exception)
             {
+                case BadRequestException:
+                    errorResponse.StatusCode = (int)HttpStatusCode.BadRequest;
+                    break;
                 case NotFoundException:
                     errorResponse.StatusCode = (int)HttpStatusCode.NotFound;
+                    break;
+                case ConflictException:
+                    errorResponse.StatusCode = (int)HttpStatusCode.Conflict;
                     break;
                 default:
                     errorResponse.StatusCode = (int)HttpStatusCode.InternalServerError;

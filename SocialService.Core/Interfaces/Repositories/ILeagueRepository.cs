@@ -13,5 +13,11 @@ namespace SocialService.Core.Interfaces.Repositories
         public Task Update(League league);
 
         public Task SwapLeaguesPlaces(string l1, string l2);
+
+        public IEnumerable<League> GetLeagues();
+
+        public Task<bool> HasLeagueWithName(string name);
+
+        public Task<bool> HasLeagueWithPlace(int place);
     }
 }
