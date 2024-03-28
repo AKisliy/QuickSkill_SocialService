@@ -56,6 +56,14 @@ namespace SocialService.WebApi.Controllers
                 opts.AfterMap((src, dest) => dest.Subscribed = subs.Contains(((User)src).Id)))));
         }
 
+        [HttpGet("{id}/leaderboard")]
+        public async Task<IActionResult> GetUserLeaderboard(int id)
+        {
+            var result = await _userService.GetUserLeaderboard(id);
+            var leagueplace = result.First().League.HierarchyPlace;
+            return Ok(new LeaderboardResponse{ LeaguePlace = leagueplace, Users = result.Select(u => _mapper.Map<UserOnLeaderboardReponse>(u))});
+        }
+
         [HttpPatch("{userId}/subscribe/{id}")]
         public async Task<IActionResult> SubscribeOnUser(int userId, int id)
         {

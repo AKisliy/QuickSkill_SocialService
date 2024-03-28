@@ -8,7 +8,7 @@ namespace SocialService.Core.Models
 
         public string LastName { get; set; } = null!;
 
-        public string Status { get; set; }
+        public string Status { get; set; } = null!;
 
         public string Username { get; set; } = null!;
 
@@ -27,5 +27,7 @@ namespace SocialService.Core.Models
         public string? Photo { get; set; }
 
         public List<int> SubscritptionIds { get; set; } = [];
+
+        public League? League { get; set; }
     }
 }

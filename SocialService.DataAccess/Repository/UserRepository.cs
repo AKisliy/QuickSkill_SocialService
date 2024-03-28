@@ -1,11 +1,13 @@
-using System.Runtime.CompilerServices;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using SocialService.Core;
 using SocialService.Core.Exceptions;
 using SocialService.Core.Interfaces;
 using SocialService.Core.Models;
+using SocialService.Core.Models.UserModels;
 using SocialService.DataAccess.Extensions;
+using EFCore.BulkExtensions;
+using System.Runtime.CompilerServices;
 
 namespace SocialService.DataAccess.Repository
 {
@@ -131,17 +133,46 @@ namespace SocialService.DataAccess.Repository
             return await _context.Users.AnyAsync(u => u.Id == userId);
         }
 
-        public async Task<Dictionary<int, List<User>>> GetUserGroupedByLeague()
+        public async Task<IEnumerable<User>> GetUserLeaderboard(int userId)
+        {
+            var user = await GetUserById(userId);
+            int? leaderboardId = user.LeaderboardId ?? throw new ConflictException($"User {userId} has no leaderboard");
+            return  _context.Users
+                        .AsNoTracking()
+                        .Where(u => u.LeaderboardId == leaderboardId)
+                        .Include(u => u.League)
+                        .OrderByDescending(u => u.WeeklyXp)
+                        .Select(u => _mapper.Map<User>(u));
+        }
+
+        public async Task<int> GetUserLeaguePlace(int userId)
+        {
+            if(!await HasUserWithId(userId))
+                throw new NotFoundException($"User {userId} not found");
+            return await _context.Users
+                            .Where(u => u.Id == userId)
+                            .Include(u => u.League)
+                            .Select(u => u.League.HierarchyPlace).FirstAsync();
+        }
+
+        public async Task<Dictionary<int, List<UserLeaderboardUpdate>>> GetUserGroupedByLeague()
         {
             return await _context.Users
                             .AsNoTracking()
+                            .Select(u => new UserLeaderboardUpdate{ Id = u.Id, LeaderboardId = u.LeaderboardId, LeagueId = u.LeagueId })
                             .GroupBy(u => u.LeagueId)
-                            .ToDictionaryAsync(p => p.Key, p => p.Select(u => _mapper.Map<User>(u)).ToList());
+                            .ToDictionaryAsync(p => p.Key, p => p.ToList());
         }
 
-        public async Task UpdateUsersLeaderboards(Dictionary<int, List<User>> usersByLeagues)
+        public async Task UpdateUsersLeaderboards(Dictionary<int, List<UserLeaderboardUpdate>> usersByLeagues)
         {
-
+            var usersToUpdate = usersByLeagues.SelectMany(pair => pair.Value)
+                .Select(u => new UserEntity
+                {
+                    Id = u.Id,
+                    LeaderboardId = u.LeaderboardId
+                }).ToList();
+            await _context.BulkUpdateAsync(usersToUpdate, options => options.PropertiesToInclude = ["LeaderboardId"]);
         }
 
         private async Task<UserEntity> GetTrackedUserById(int userId)

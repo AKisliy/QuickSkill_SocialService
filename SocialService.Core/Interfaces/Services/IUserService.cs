@@ -15,5 +15,7 @@ namespace SocialService.Core.Interfaces.Services
          public Task Unsubscribe(int id, int subId);
 
          public Task<User[]> GetRecommendationForUser(int id, int pageSize);
+
+         public Task<IEnumerable<User>> GetUserLeaderboard(int userId);
     }
 }

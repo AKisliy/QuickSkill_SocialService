@@ -52,5 +52,10 @@ namespace SocialService.Application.Services
         {
             return await _userRepository.GetSubscriptionsIds(userId);
         }
+
+        public async Task<IEnumerable<User>> GetUserLeaderboard(int userId)
+        {
+            return await _userRepository.GetUserLeaderboard(userId);
+        }
     }
 }

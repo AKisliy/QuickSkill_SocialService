@@ -12,7 +12,9 @@ namespace SocialService.WebApi.Profiles
             CreateMap<User, UserSearchResponseDto>()
                 .ForMember(u => u.Subscribed, opt => opt.Ignore());
             CreateMap<User, UserEntity>();
-            CreateMap<UserEntity, User>();
+            CreateMap<UserEntity, User>()
+                .ForMember(u => u.League, opt => opt.MapFrom(u => u.League));
+            CreateMap<User, UserOnLeaderboardReponse>();
         }
     }
 }

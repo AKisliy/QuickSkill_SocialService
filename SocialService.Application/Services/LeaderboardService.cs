@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using SocialService.Core.Interfaces;
 using SocialService.Core.Interfaces.Services;
 using SocialService.Core.Models;
+using SocialService.Core.Models.UserModels;
 
 namespace SocialService.Application.Services
 {
@@ -32,7 +33,7 @@ namespace SocialService.Application.Services
         }
 
         // нужно добавить логику заполнения ботами
-        private static void CreateLeaderboards(Dictionary<int, List<User>> usersInLeagues)
+        private static void CreateLeaderboards(Dictionary<int, List<UserLeaderboardUpdate>> usersInLeagues)
         {
             Random rnd = new();
             int id = 1;
@@ -42,7 +43,7 @@ namespace SocialService.Application.Services
                 int leaderboardsCnt =  (cnt / leaderboardSize)  + ((cnt % leaderboardSize) == 0 ? 0 : 1);
                 int left = id;
                 int right = id + leaderboardsCnt - 1;
-                foreach(User u in usersInLeagues[league])
+                foreach(var u in usersInLeagues[league])
                 {
                     u.LeaderboardId = rnd.Next(left, right + 1);
                 }

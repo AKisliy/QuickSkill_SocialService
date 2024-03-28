@@ -30,7 +30,7 @@ builder.Services.AddScoped<ILeagueService, LeagueService>();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
 //builder.Services.AddMassTransitWithRabbitMQ();
-//builder.Services.AddHangfireToApp(builder.Configuration);
+builder.Services.AddHangfireToApp(builder.Configuration);
 
 // var rabbitMqOptions = builder.Configuration.GetSection("RabbitMq").Get<RabbitMqOptions>();
 // builder.Services.AddRabbitMqConnection(rabbitMqOptions);
@@ -46,7 +46,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 //app.ConfigureEventBus();
-//app.UseHangfireDashboard();
+app.UseHangfireDashboard();
+app.ConfigureHangfireTasks();
 app.UseExceptionHandler();
 app.UseRouting();
 app.UseHttpsRedirection();

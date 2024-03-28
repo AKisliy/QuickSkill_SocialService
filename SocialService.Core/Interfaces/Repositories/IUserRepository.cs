@@ -1,4 +1,5 @@
 using SocialService.Core.Models;
+using SocialService.Core.Models.UserModels;
 
 namespace SocialService.Core.Interfaces
 {
@@ -26,8 +27,10 @@ namespace SocialService.Core.Interfaces
 
         public Task<bool> HasUserWithId(int userId);
 
-        public Task<Dictionary<int, List<User>>> GetUserGroupedByLeague();
+        public Task<Dictionary<int, List<UserLeaderboardUpdate>>> GetUserGroupedByLeague();
 
-        public Task UpdateUsersLeaderboards(Dictionary<int, List<User>> usersByLeagues);
+        public Task UpdateUsersLeaderboards(Dictionary<int, List<UserLeaderboardUpdate>> usersByLeagues);
+
+        public Task<IEnumerable<User>> GetUserLeaderboard(int userId);
     }
 }

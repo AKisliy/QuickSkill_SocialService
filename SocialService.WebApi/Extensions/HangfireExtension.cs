@@ -16,8 +16,8 @@ namespace SocialService.WebApi.Extensions
 
         public static IApplicationBuilder ConfigureHangfireTasks(this IApplicationBuilder app)
         {
-            RecurringJob.AddOrUpdate<LeaderboardService>("create-leaderboards", x => x.CreateWeeklyLeaderboards(), "0 0 * * 1");
-            RecurringJob.AddOrUpdate<LeaderboardService>("update-leagues", x => x.UpdateLeagues(), "59 23 * * 0");
+            RecurringJob.AddOrUpdate<LeaderboardService>("create-leaderboards", x => x.CreateWeeklyLeaderboards(), "01 3 * * 1");
+            RecurringJob.AddOrUpdate<LeaderboardService>("update-leagues", x => x.UpdateLeagues(), "00 3 * * 1");
             return app;
         }
     }
