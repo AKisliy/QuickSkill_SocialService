@@ -28,6 +28,8 @@ public class UserEntity
 
     public string? Photo { get; set; }
 
+    public bool IsBot { get; set; }
+
     public virtual ICollection<AnswerEntity> Answers { get; set; } = new List<AnswerEntity>();
 
     public virtual ICollection<CommentEntity> Comments { get; set; } = new List<CommentEntity>();

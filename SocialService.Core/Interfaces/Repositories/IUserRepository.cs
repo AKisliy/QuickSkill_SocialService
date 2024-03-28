@@ -7,6 +7,8 @@ namespace SocialService.Core.Interfaces
     {
         public Task AddUser(User user);
 
+        public Task AddBot(User bot);
+
         public Task DeleteUser(int id);
 
         public Task Update(User user);

@@ -7,7 +7,6 @@ using SocialService.Core.Models;
 using SocialService.Core.Models.UserModels;
 using SocialService.DataAccess.Extensions;
 using EFCore.BulkExtensions;
-using System.Runtime.CompilerServices;
 
 namespace SocialService.DataAccess.Repository
 {
@@ -25,8 +24,15 @@ namespace SocialService.DataAccess.Repository
         public async Task AddUser(User user)
         {
             var userEntity = _mapper.Map<UserEntity>(user);
-            userEntity.LeagueId = 1;
             await _context.AddAsync(userEntity);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task AddBot(User bot)
+        {
+            var botEntity = _mapper.Map<UserEntity>(bot);
+            botEntity.IsBot = true;
+            await _context.AddAsync(botEntity);
             await _context.SaveChangesAsync();
         }
 
@@ -161,7 +167,12 @@ namespace SocialService.DataAccess.Repository
                             .AsNoTracking()
                             .Select(u => new UserLeaderboardUpdate{ Id = u.Id, LeaderboardId = u.LeaderboardId, LeagueId = u.LeagueId })
                             .GroupBy(u => u.LeagueId)
-                            .ToDictionaryAsync(p => p.Key, p => p.ToList());
+                            .ToDictionaryAsync(p => p.Key, p =>
+                            {
+                                var users = p.ToList();
+                                users.Shuffle();
+                                return users;
+                            });
         }
 
         public async Task UpdateUsersLeaderboards(Dictionary<int, List<UserLeaderboardUpdate>> usersByLeagues)

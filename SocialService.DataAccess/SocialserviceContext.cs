@@ -210,6 +210,7 @@ public partial class SocialServiceContext : DbContext
             entity.Property(e => e.LeaderboardId).HasColumnName("leaderboardid");
             entity.Property(e => e.LeagueId)
                 .ValueGeneratedOnAdd()
+                .HasDefaultValue(0)
                 .HasColumnName("leagueid");
             entity.Property(e => e.Status)
                 .HasMaxLength(10)
@@ -230,11 +231,16 @@ public partial class SocialServiceContext : DbContext
             entity.Property(e => e.Xp)
                 .HasDefaultValue(0)
                 .HasColumnName("xp");
+            entity.Property(e => e.IsBot)
+                .HasDefaultValue(false)
+                .HasColumnName("isbot");
 
             entity.HasOne(d => d.League).WithMany(p => p.Users)
                 .HasForeignKey(d => d.LeagueId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_users_league");
+
+            entity.HasQueryFilter(u => !u.IsBot);
         });
 
         OnModelCreatingPartial(modelBuilder);
