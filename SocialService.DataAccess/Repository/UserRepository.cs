@@ -7,6 +7,7 @@ using SocialService.Core.Models;
 using SocialService.Core.Models.UserModels;
 using SocialService.DataAccess.Extensions;
 using EFCore.BulkExtensions;
+using System.Runtime.CompilerServices;
 
 namespace SocialService.DataAccess.Repository
 {
@@ -34,6 +35,19 @@ namespace SocialService.DataAccess.Repository
             botEntity.IsBot = true;
             await _context.AddAsync(botEntity);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<UserLeaderboardUpdate>> AddBots(List<User> bots)
+        {
+            var botsEntityList = bots.Select(b =>
+            {
+                var enity = _mapper.Map<UserEntity>(b);
+                enity.IsBot = true;
+                return enity;
+            });
+            await _context.AddRangeAsync(botsEntityList);
+            await _context.SaveChangesAsync();
+            return botsEntityList.Select(b => _mapper.Map<UserLeaderboardUpdate>(b)).ToList();
         }
 
         public async Task DeleteUser(int id)
@@ -165,7 +179,7 @@ namespace SocialService.DataAccess.Repository
         {
             return await _context.Users
                             .AsNoTracking()
-                            .Select(u => new UserLeaderboardUpdate{ Id = u.Id, LeaderboardId = u.LeaderboardId, LeagueId = u.LeagueId })
+                            .Select(u => new UserLeaderboardUpdate{ Id = u.Id, LeaderboardId = u.LeaderboardId, LeagueId = u.LeagueId, IsBot = u.IsBot })
                             .GroupBy(u => u.LeagueId)
                             .ToDictionaryAsync(p => p.Key, p =>
                             {
@@ -181,9 +195,10 @@ namespace SocialService.DataAccess.Repository
                 .Select(u => new UserEntity
                 {
                     Id = u.Id,
-                    LeaderboardId = u.LeaderboardId
+                    LeaderboardId = u.LeaderboardId,
+                    LeagueId = u.LeagueId
                 }).ToList();
-            await _context.BulkUpdateAsync(usersToUpdate, options => options.PropertiesToInclude = ["LeaderboardId"]);
+            await _context.BulkUpdateAsync(usersToUpdate, options => options.PropertiesToInclude = ["LeaderboardId", "LeagueId"]);
         }
 
         private async Task<UserEntity> GetTrackedUserById(int userId)

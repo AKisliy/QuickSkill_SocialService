@@ -240,7 +240,7 @@ public partial class SocialServiceContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_users_league");
 
-            entity.HasQueryFilter(u => !u.IsBot);
+            //entity.HasQueryFilter(u => !u.IsBot);
         });
 
         OnModelCreatingPartial(modelBuilder);
