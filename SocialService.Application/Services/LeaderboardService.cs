@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using SocialService.Core.Interfaces;
+using SocialService.Core.Interfaces.Repositories;
 using SocialService.Core.Interfaces.Services;
 using SocialService.Core.Models;
 using SocialService.Core.Models.UserModels;
@@ -9,27 +10,52 @@ namespace SocialService.Application.Services
     public class LeaderboardService: ILeaderboardService
     {
         private readonly IUserRepository _userRepository;
-
+        private readonly ILeagueRepository _leagueRepository;
         private const int leaderboardSize = 20;
         private const int undefinedLeagueIndex = 0;
+        private const int goToNextLeague = 5;
+        private const int goToPrevLeague = 5;
 
-        public LeaderboardService(IUserRepository userRepository)
+        public LeaderboardService(IUserRepository userRepository, ILeagueRepository leagueRepository)
         {
             _userRepository = userRepository;
+            _leagueRepository = leagueRepository;
         }
         public async Task CreateWeeklyLeaderboards()
         {
-            // по факту нам не нужна вся информация о юзерах
-            // нам нужны на вход только UserId и LeagueId, LeaderboardId
-            // можно создать DTO 
-            var leagues = await _userRepository.GetUserGroupedByLeague();
+            var leagues = await _userRepository.GetUserGroupedByLeagueId();
             await CreateLeaderboards(leagues);
-            await _userRepository.UpdateUsersLeaderboards(leagues); // логика НЕ реализована
+            await _userRepository.UpdateUsersLeaderboards(leagues);
         }
 
         public async Task UpdateLeagues()
         {
-            // Логика обновления лиг и обнуления weeklyXp(в конце недели)
+            var leaguesOrder = await _leagueRepository.GetLeaguesAsync();
+            var leaderBoards = await _userRepository.GetUserGroupedByLeaderboard();
+            foreach(int leaderboard in leaderBoards.Keys)
+                ProceedLeaderboard(leaderBoards[leaderboard], leaguesOrder);
+            var usersWithoutLeaderboards = await _userRepository.GetUsersWithoutLeaderboard();
+            usersWithoutLeaderboards = usersWithoutLeaderboards.ConvertAll(u =>
+                {
+                    if(!u.IsBot)
+                        u.LeagueId = leaguesOrder[0].Id;
+                    return u;
+                }
+            );
+            leaderBoards[-1] = usersWithoutLeaderboards;
+        }
+
+        private void ProceedLeaderboard(List<UserLeagueUpdate> users, List<League> leagues)
+        {
+            if(users.Count == 0)
+                return;
+            var curLeague = leagues.First(l => l.Id == users[0].LeagueId);
+            var nextLeague = leagues.Find(l => l.HierarchyPlace > curLeague.HierarchyPlace);
+            var prevLeague = leagues.Find(l => l.HierarchyPlace < curLeague.HierarchyPlace);
+            for(int i = 0; i < goToNextLeague; ++i)
+                users[i].LeagueId = nextLeague?.Id ?? users[i].LeagueId;
+            for(int i = 0; i < goToPrevLeague; ++i)
+                users[leaderboardSize - i].LeagueId = prevLeague?.Id ?? users[leaderboardSize - i].LeagueId;
         }
 
         // нужно добавить логику заполнения ботами
@@ -116,7 +142,6 @@ namespace SocialService.Application.Services
 
         private async Task CreateBots(int cnt, List<UserLeaderboardUpdate> bots)
         {
-            System.Console.WriteLine("called");
             List<User> newBots = [];
             while(cnt-- > 0)
             {

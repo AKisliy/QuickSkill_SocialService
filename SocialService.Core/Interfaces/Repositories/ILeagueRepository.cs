@@ -16,6 +16,8 @@ namespace SocialService.Core.Interfaces.Repositories
 
         public IEnumerable<League> GetLeagues();
 
+        public Task<List<League>> GetLeaguesAsync();
+
         public Task<bool> HasLeagueWithName(string name);
 
         public Task<bool> HasLeagueWithPlace(int place);

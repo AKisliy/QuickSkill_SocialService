@@ -8,6 +8,7 @@ using SocialService.Core.Models.UserModels;
 using SocialService.DataAccess.Extensions;
 using EFCore.BulkExtensions;
 using System.Runtime.CompilerServices;
+using System.Reflection;
 
 namespace SocialService.DataAccess.Repository
 {
@@ -175,7 +176,7 @@ namespace SocialService.DataAccess.Repository
                             .Select(u => u.League.HierarchyPlace).FirstAsync();
         }
 
-        public async Task<Dictionary<int, List<UserLeaderboardUpdate>>> GetUserGroupedByLeague()
+        public async Task<Dictionary<int, List<UserLeaderboardUpdate>>> GetUserGroupedByLeagueId()
         {
             return await _context.Users
                             .AsNoTracking()
@@ -189,6 +190,25 @@ namespace SocialService.DataAccess.Repository
                             });
         }
 
+        public async Task<Dictionary<int, List<UserLeagueUpdate>>> GetUserGroupedByLeaderboard()
+        {
+            return  await _context.Users
+                            .AsNoTracking()
+                            .Where(u => u.LeaderboardId != null)
+                            .Select(u => new UserLeagueUpdate{ Id = u.Id, LeaderboardId = u.LeaderboardId, LeagueId = u.LeagueId, WeeklyXp = u.WeeklyXp})
+                            .GroupBy(u => (int)u.LeaderboardId)
+                            .ToDictionaryAsync(p => p.Key, p => p.OrderBy(p => p.Id).ToList());
+        }
+
+        public async Task<List<UserLeagueUpdate>> GetUsersWithoutLeaderboard()
+        {
+            return await _context.Users
+                            .AsNoTracking()
+                            .Where(u => u.LeaderboardId == null)
+                            .Select(u => new UserLeagueUpdate{ Id = u.Id, LeaderboardId = u.LeaderboardId, LeagueId = u.LeagueId, WeeklyXp = u.WeeklyXp})
+                            .ToListAsync();
+        }
+
         public async Task UpdateUsersLeaderboards(Dictionary<int, List<UserLeaderboardUpdate>> usersByLeagues)
         {
             var usersToUpdate = usersByLeagues.SelectMany(pair => pair.Value)
@@ -199,6 +219,18 @@ namespace SocialService.DataAccess.Repository
                     LeagueId = u.LeagueId
                 }).ToList();
             await _context.BulkUpdateAsync(usersToUpdate, options => options.PropertiesToInclude = ["LeaderboardId", "LeagueId"]);
+        }
+
+        public async Task UpdateUsersLeagues(Dictionary<int, List<UserLeagueUpdate>> userByLeaderboards)
+        {
+            var usersToUpdate = userByLeaderboards.SelectMany(p => p.Value)
+                .Select(u => new UserEntity
+                {
+                    Id = u.Id,
+                    WeeklyXp = 0,
+                    LeagueId = u.LeagueId
+                }).ToList();
+            await _context.BulkUpdateAsync(usersToUpdate, options => options.PropertiesToInclude = ["LeaderboardId", "LeagueId", "WeeklyXp"]);
         }
 
         private async Task<UserEntity> GetTrackedUserById(int userId)

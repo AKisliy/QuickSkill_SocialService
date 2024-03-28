@@ -42,8 +42,19 @@ namespace SocialService.DataAccess.Repository
         {
             return _context.Leagues
                             .AsNoTracking()
+                            .Where(l => l.Id != 0)
                             .OrderBy(l => l.HierarchyPlace)
                             .Select(l => _mapper.Map<League>(l));
+        }
+
+        public async Task<List<League>> GetLeaguesAsync()
+        {
+            return await _context.Leagues
+                            .AsNoTracking()
+                            .Where(l => l.Id != 0)
+                            .OrderBy(l => l.HierarchyPlace)
+                            .Select(l => _mapper.Map<League>(l))
+                            .ToListAsync();
         }
 
         public async Task Delete(string leagueName)

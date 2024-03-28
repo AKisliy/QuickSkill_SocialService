@@ -29,12 +29,16 @@ namespace SocialService.Core.Interfaces
 
         public Task<bool> HasUserWithId(int userId);
 
-        public Task<Dictionary<int, List<UserLeaderboardUpdate>>> GetUserGroupedByLeague();
+        public Task<Dictionary<int, List<UserLeaderboardUpdate>>> GetUserGroupedByLeagueId();
 
         public Task UpdateUsersLeaderboards(Dictionary<int, List<UserLeaderboardUpdate>> usersByLeagues);
 
         public Task<IEnumerable<User>> GetUserLeaderboard(int userId);
 
         public Task<List<UserLeaderboardUpdate>> AddBots(List<User> bots);
+
+        public Task<Dictionary<int, List<UserLeagueUpdate>>> GetUserGroupedByLeaderboard();
+
+        public Task<List<UserLeagueUpdate>> GetUsersWithoutLeaderboard();
     }
 }
