@@ -19,13 +19,7 @@ namespace SocialService.WebApi.Extensions
                 {
                     cfg.Host("rabbitmq://localhost");
 
-                    cfg.ReceiveEndpoint("user_created_queue", e =>
-                    {
-                        e.BindQueue = false;
-                        e.ExchangeType = ExchangeType.Fanout;
-                        e.Bind("UserCreatedExchange");
-                        e.Consumer<UserCreatedConsumer>(context);
-                    });
+                    cfg.ReceiveEndpoint("UserCreatedQueue", e => e.Consumer<UserCreatedConsumer>(context));
                 });
             });
         }
