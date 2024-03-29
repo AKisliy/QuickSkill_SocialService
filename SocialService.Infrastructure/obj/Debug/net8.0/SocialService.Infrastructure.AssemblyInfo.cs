@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SocialService.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0559929ca704aef4d8898969827ef767dbb4824f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c6869699c8da99257579259564b4b5c422bfe4f3")]
 [assembly: System.Reflection.AssemblyProductAttribute("SocialService.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SocialService.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

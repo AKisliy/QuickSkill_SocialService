@@ -423,6 +423,16 @@
         "runtime": {
           "bin/placeholder/SocialService.Core.dll": {}
         }
+      },
+      "SocialService.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/SocialService.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SocialService.Shared.dll": {}
+        }
       }
     }
   },
@@ -1241,13 +1251,19 @@
       "type": "project",
       "path": "../SocialService.Core/SocialService.Core.csproj",
       "msbuildProject": "../SocialService.Core/SocialService.Core.csproj"
+    },
+    "SocialService.Shared/1.0.0": {
+      "type": "project",
+      "path": "../SocialService.Shared/SocialService.Shared.csproj",
+      "msbuildProject": "../SocialService.Shared/SocialService.Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
       "EventBus.RabbitMQ.Standard >= 3.1.0",
       "MassTransit >= 8.2.0",
-      "SocialService.Core >= 1.0.0"
+      "SocialService.Core >= 1.0.0",
+      "SocialService.Shared >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -1277,6 +1293,9 @@
           "projectReferences": {
             "/Users/alexeykiselev/SocialService/SocialService.Core/SocialService.Core.csproj": {
               "projectPath": "/Users/alexeykiselev/SocialService/SocialService.Core/SocialService.Core.csproj"
+            },
+            "/Users/alexeykiselev/SocialService/SocialService.Shared/SocialService.Shared.csproj": {
+              "projectPath": "/Users/alexeykiselev/SocialService/SocialService.Shared/SocialService.Shared.csproj"
             }
           }
         }

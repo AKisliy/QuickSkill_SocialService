@@ -1053,10 +1053,16 @@
         "dependencies": {
           "EventBus.RabbitMQ.Standard": "3.1.0",
           "MassTransit": "8.2.0",
-          "SocialService.Core": "1.0.0"
+          "SocialService.Core": "1.0.0",
+          "SocialService.Shared": "1.0.0"
         },
         "runtime": {
           "SocialService.Infrastructure.dll": {}
+        }
+      },
+      "SocialService.Shared/1.0.0": {
+        "runtime": {
+          "SocialService.Shared.dll": {}
         }
       }
     }
@@ -1790,6 +1796,11 @@
       "sha512": ""
     },
     "SocialService.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SocialService.Shared/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

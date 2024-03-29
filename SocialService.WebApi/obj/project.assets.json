@@ -1853,13 +1853,24 @@
         "dependencies": {
           "EventBus.RabbitMQ.Standard": "3.1.0",
           "MassTransit": "8.2.0",
-          "SocialService.Core": "1.0.0"
+          "SocialService.Core": "1.0.0",
+          "SocialService.Shared": "1.0.0"
         },
         "compile": {
           "bin/placeholder/SocialService.Infrastructure.dll": {}
         },
         "runtime": {
           "bin/placeholder/SocialService.Infrastructure.dll": {}
+        }
+      },
+      "SocialService.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/SocialService.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SocialService.Shared.dll": {}
         }
       }
     }
@@ -4933,6 +4944,11 @@
       "type": "project",
       "path": "../SocialService.Infrastructure/SocialService.Infrastructure.csproj",
       "msbuildProject": "../SocialService.Infrastructure/SocialService.Infrastructure.csproj"
+    },
+    "SocialService.Shared/1.0.0": {
+      "type": "project",
+      "path": "../SocialService.Shared/SocialService.Shared.csproj",
+      "msbuildProject": "../SocialService.Shared/SocialService.Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
