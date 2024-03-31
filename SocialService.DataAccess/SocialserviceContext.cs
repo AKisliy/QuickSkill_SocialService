@@ -199,7 +199,9 @@ public partial class SocialServiceContext : DbContext
 
             entity.ToTable("users");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .ValueGeneratedOnAdd()
+                .HasColumnName("id");
             entity.Property(e => e.Photo).HasColumnName("photo");
             entity.Property(e => e.FirstName)
                 .HasMaxLength(100)

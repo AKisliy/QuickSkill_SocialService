@@ -1,9 +1,12 @@
-using System.Runtime.CompilerServices;
+using AutoMapper;
+using MediatR;
 using SocialService.Core.Interfaces;
 using SocialService.Core.Interfaces.Repositories;
 using SocialService.Core.Interfaces.Services;
+using SocialService.Core.Interfaces.Utils;
 using SocialService.Core.Models;
 using SocialService.Core.Models.UserModels;
+using SocialService.Core.Notifications;
 
 namespace SocialService.Application.Services
 {
@@ -11,15 +14,26 @@ namespace SocialService.Application.Services
     {
         private readonly IUserRepository _userRepository;
         private readonly ILeagueRepository _leagueRepository;
+        private readonly IBotsGenerator _generator;
+        private readonly IMediator _mediator;
+        private readonly IMapper _mapper;
         private const int leaderboardSize = 20;
         private const int undefinedLeagueIndex = 0;
         private const int goToNextLeague = 5;
         private const int goToPrevLeague = 5;
 
-        public LeaderboardService(IUserRepository userRepository, ILeagueRepository leagueRepository)
+        public LeaderboardService(
+            IUserRepository userRepository, 
+            ILeagueRepository leagueRepository, 
+            IBotsGenerator generator, 
+            IMediator mediator, 
+            IMapper mapper)
         {
             _userRepository = userRepository;
             _leagueRepository = leagueRepository;
+            _generator = generator;
+            _mediator = mediator;
+            _mapper = mapper;
         }
         public async Task CreateWeeklyLeaderboards()
         {
@@ -43,18 +57,21 @@ namespace SocialService.Application.Services
                 }
             );
             leaderBoards[-1] = usersWithoutLeaderboards;
+            await _userRepository.UpdateUsersLeagues(leaderBoards);
         }
 
         private void ProceedLeaderboard(List<UserLeagueUpdate> users, List<League> leagues)
         {
             if(users.Count == 0)
                 return;
+            System.Console.WriteLine(users[0].LeagueId);
+            System.Console.WriteLine(leagues.Count);
             var curLeague = leagues.First(l => l.Id == users[0].LeagueId);
             var nextLeague = leagues.Find(l => l.HierarchyPlace > curLeague.HierarchyPlace);
             var prevLeague = leagues.Find(l => l.HierarchyPlace < curLeague.HierarchyPlace);
             for(int i = 0; i < goToNextLeague; ++i)
                 users[i].LeagueId = nextLeague?.Id ?? users[i].LeagueId;
-            for(int i = 0; i < goToPrevLeague; ++i)
+            for(int i = 1; i <= goToPrevLeague; ++i)
                 users[leaderboardSize - i].LeagueId = prevLeague?.Id ?? users[leaderboardSize - i].LeagueId;
         }
 
@@ -66,8 +83,6 @@ namespace SocialService.Application.Services
             List<int> leagues = usersInLeagues.Keys.Where(x => x != undefinedLeagueIndex).ToList();
             foreach(int league in leagues)
             {
-                if(league == undefinedLeagueIndex)
-                    continue;
                 int cnt = usersInLeagues[league].Count;
                 int leaderboardsCnt =  (cnt / leaderboardSize)  + ((cnt % leaderboardSize) == 0 ? 0 : 1);
                 int[] boards = new int[leaderboardsCnt];
@@ -127,6 +142,7 @@ namespace SocialService.Application.Services
             int i = 0;
             while(botsNeeded > 0)
             {
+                Console.WriteLine(nullBots[i].IsBot);
                 if(!nullBots[nullBotsUsed + i].IsBot)
                 {
                     ++i;
@@ -142,12 +158,10 @@ namespace SocialService.Application.Services
 
         private async Task CreateBots(int cnt, List<UserLeaderboardUpdate> bots)
         {
-            List<User> newBots = [];
-            while(cnt-- > 0)
-            {
-                newBots.Add(new User{ FirstName = "Bot", LastName = "Bot", Username = "Bot"});
-            }
-            bots.AddRange(await _userRepository.AddBots(newBots));
+            var newBots = _generator.GenerateBots(cnt);
+            var addedBots = await _userRepository.AddBots(newBots);
+            bots.AddRange(addedBots.Select(u => _mapper.Map<UserLeaderboardUpdate>(u)));
+            await _mediator.Publish(new BotCreatedNotification(addedBots));
         }
     }
 }

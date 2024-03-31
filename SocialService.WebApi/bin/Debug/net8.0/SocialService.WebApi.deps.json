@@ -141,6 +141,22 @@
           }
         }
       },
+      "Faker.Net/2.0.163": {
+        "dependencies": {
+          "NETStandard.Library": "2.0.3"
+        },
+        "runtime": {
+          "lib/net60/Faker.Net.6.0.dll": {
+            "assemblyVersion": "2.0.163.0",
+            "fileVersion": "2.0.163.0"
+          }
+        },
+        "resources": {
+          "lib/net60/de-DE/Faker.Net.6.0.resources.dll": {
+            "locale": "de-DE"
+          }
+        }
+      },
       "Hangfire.AspNetCore/1.8.11": {
         "dependencies": {
           "Hangfire.NetCore": "1.8.11"
@@ -279,6 +295,26 @@
           "lib/netstandard2.0/MedallionTopologicalSort.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "MediatR/12.2.0": {
+        "dependencies": {
+          "MediatR.Contracts": "2.0.1",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/MediatR.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.2.0.0"
+          }
+        }
+      },
+      "MediatR.Contracts/2.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/MediatR.Contracts.dll": {
+            "assemblyVersion": "2.0.1.0",
+            "fileVersion": "2.0.1.0"
           }
         }
       },
@@ -742,6 +778,11 @@
           }
         }
       },
+      "NETStandard.Library/2.0.3": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "5.0.0"
+        }
+      },
       "NetTopologySuite/2.5.0": {
         "dependencies": {
           "System.Memory": "4.5.5"
@@ -1024,13 +1065,20 @@
       },
       "SocialService.Application/1.0.0": {
         "dependencies": {
-          "SocialService.Core": "1.0.0"
+          "AutoMapper": "12.0.1",
+          "MassTransit": "8.2.0",
+          "MediatR": "12.2.0",
+          "SocialService.Core": "1.0.0",
+          "SocialService.Shared": "1.0.0"
         },
         "runtime": {
           "SocialService.Application.dll": {}
         }
       },
       "SocialService.Core/1.0.0": {
+        "dependencies": {
+          "MediatR": "12.2.0"
+        },
         "runtime": {
           "SocialService.Core.dll": {}
         }
@@ -1052,6 +1100,7 @@
       "SocialService.Infrastructure/1.0.0": {
         "dependencies": {
           "EventBus.RabbitMQ.Standard": "3.1.0",
+          "Faker.Net": "2.0.163",
           "MassTransit": "8.2.0",
           "SocialService.Core": "1.0.0",
           "SocialService.Shared": "1.0.0"
@@ -1129,6 +1178,13 @@
       "path": "eventbus.rabbitmq.standard/3.1.0",
       "hashPath": "eventbus.rabbitmq.standard.3.1.0.nupkg.sha512"
     },
+    "Faker.Net/2.0.163": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-nQZA+V19Jf6tSeFnuRWpoVZzSHRmtfOYAnX5RbkY6+HBHpLg55DYTnxUSXeFHpmsgQzmkjG7Ucomk7FisJnfhA==",
+      "path": "faker.net/2.0.163",
+      "hashPath": "faker.net.2.0.163.nupkg.sha512"
+    },
     "Hangfire.AspNetCore/1.8.11": {
       "type": "package",
       "serviceable": true,
@@ -1184,6 +1240,20 @@
       "sha512": "sha512-dcAqM8TcyZQ/T466CvqNMUUn/G0FQE+4R7l62ngXH7hLFP9yA7yoP/ySsLgiXx3pGUQC3J+cUvXmJOOR/eC+oQ==",
       "path": "medalliontopologicalsort/1.0.0",
       "hashPath": "medalliontopologicalsort.1.0.0.nupkg.sha512"
+    },
+    "MediatR/12.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8TUFrHapKi6D74PhnSNEguRsH91HNGyP3R4ZQdgDorJgl9Wac5Prh0vA33QfrniAaS6L2xNNhc6vxzg+5AIbwA==",
+      "path": "mediatr/12.2.0",
+      "hashPath": "mediatr.12.2.0.nupkg.sha512"
+    },
+    "MediatR.Contracts/2.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-FYv95bNT4UwcNA+G/J1oX5OpRiSUxteXaUt2BJbRSdRNiIUNbggJF69wy6mnk2wYToaanpdXZdCwVylt96MpwQ==",
+      "path": "mediatr.contracts/2.0.1",
+      "hashPath": "mediatr.contracts.2.0.1.nupkg.sha512"
     },
     "Microsoft.AspNetCore.OpenApi/8.0.1": {
       "type": "package",
@@ -1506,6 +1576,13 @@
       "sha512": "sha512-AmEfUPkFl+Ev6jJ8Dhns3CYHBfD12RHzGYWuLt6DfG6/af6YvOMyPz74ZPPjBYQGRJkumD2Z48Kqm8s5DJuhLA==",
       "path": "mysqlconnector/2.3.5",
       "hashPath": "mysqlconnector.2.3.5.nupkg.sha512"
+    },
+    "NETStandard.Library/2.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-st47PosZSHrjECdjeIzZQbzivYBJFv6P2nv4cj2ypdI204DO+vZ7l5raGMiX4eXMJ53RfOIg+/s4DHVZ54Nu2A==",
+      "path": "netstandard.library/2.0.3",
+      "hashPath": "netstandard.library.2.0.3.nupkg.sha512"
     },
     "NetTopologySuite/2.5.0": {
       "type": "package",

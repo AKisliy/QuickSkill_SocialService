@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "S8+Av9t+ugkqEP+j6xfRTa2TUfk6M11PxpEfmo3SBS9ZPg4zbE2ZObNGPzawdE7r5u33I7TaL/kJnIvkNax+eA==",
+  "dgSpecHash": "i0PKiW98kMSxwies+PfxFJXtAnUMKNurDbhkFW7aDI4sTljQTrRESYcHAdcNjxuRT/JHaePHM8i5hzeysjtj+w==",
   "success": true,
   "projectFilePath": "/Users/alexeykiselev/SocialService/SocialService.Core/SocialService.Core.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/alexeykiselev/.nuget/packages/mediatr/12.2.0/mediatr.12.2.0.nupkg.sha512",
+    "/Users/alexeykiselev/.nuget/packages/mediatr.contracts/2.0.1/mediatr.contracts.2.0.1.nupkg.sha512",
+    "/Users/alexeykiselev/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

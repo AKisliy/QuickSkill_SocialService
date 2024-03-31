@@ -14,3 +14,5 @@
 /Users/alexeykiselev/SocialService/SocialService.Application/obj/Debug/net8.0/refint/SocialService.Application.dll
 /Users/alexeykiselev/SocialService/SocialService.Application/obj/Debug/net8.0/SocialService.Application.pdb
 /Users/alexeykiselev/SocialService/SocialService.Application/obj/Debug/net8.0/ref/SocialService.Application.dll
+/Users/alexeykiselev/SocialService/SocialService.Application/bin/Debug/net8.0/SocialService.Shared.dll
+/Users/alexeykiselev/SocialService/SocialService.Application/bin/Debug/net8.0/SocialService.Shared.pdb

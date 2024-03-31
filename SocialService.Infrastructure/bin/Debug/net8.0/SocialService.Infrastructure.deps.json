@@ -9,6 +9,7 @@
       "SocialService.Infrastructure/1.0.0": {
         "dependencies": {
           "EventBus.RabbitMQ.Standard": "3.1.0",
+          "Faker.Net": "2.0.163",
           "MassTransit": "8.2.0",
           "SocialService.Core": "1.0.0",
           "SocialService.Shared": "1.0.0"
@@ -46,6 +47,22 @@
           }
         }
       },
+      "Faker.Net/2.0.163": {
+        "dependencies": {
+          "NETStandard.Library": "2.0.3"
+        },
+        "runtime": {
+          "lib/net60/Faker.Net.6.0.dll": {
+            "assemblyVersion": "2.0.163.0",
+            "fileVersion": "2.0.163.0"
+          }
+        },
+        "resources": {
+          "lib/net60/de-DE/Faker.Net.6.0.resources.dll": {
+            "locale": "de-DE"
+          }
+        }
+      },
       "MassTransit/8.2.0": {
         "dependencies": {
           "MassTransit.Abstractions": "8.2.0",
@@ -70,6 +87,26 @@
           "lib/net8.0/MassTransit.Abstractions.dll": {
             "assemblyVersion": "8.2.0.0",
             "fileVersion": "8.2.0.0"
+          }
+        }
+      },
+      "MediatR/12.2.0": {
+        "dependencies": {
+          "MediatR.Contracts": "2.0.1",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/MediatR.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.2.0.0"
+          }
+        }
+      },
+      "MediatR.Contracts/2.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/MediatR.Contracts.dll": {
+            "assemblyVersion": "2.0.1.0",
+            "fileVersion": "2.0.1.0"
           }
         }
       },
@@ -196,6 +233,12 @@
           }
         }
       },
+      "Microsoft.NETCore.Platforms/1.1.0": {},
+      "NETStandard.Library/2.0.3": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0"
+        }
+      },
       "Newtonsoft.Json/13.0.1": {
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {
@@ -235,6 +278,9 @@
       "System.Threading.Channels/8.0.0": {},
       "System.ValueTuple/4.5.0": {},
       "SocialService.Core/1.0.0": {
+        "dependencies": {
+          "MediatR": "12.2.0"
+        },
         "runtime": {
           "SocialService.Core.dll": {}
         }
@@ -266,6 +312,13 @@
       "path": "eventbus.rabbitmq.standard/3.1.0",
       "hashPath": "eventbus.rabbitmq.standard.3.1.0.nupkg.sha512"
     },
+    "Faker.Net/2.0.163": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-nQZA+V19Jf6tSeFnuRWpoVZzSHRmtfOYAnX5RbkY6+HBHpLg55DYTnxUSXeFHpmsgQzmkjG7Ucomk7FisJnfhA==",
+      "path": "faker.net/2.0.163",
+      "hashPath": "faker.net.2.0.163.nupkg.sha512"
+    },
     "MassTransit/8.2.0": {
       "type": "package",
       "serviceable": true,
@@ -279,6 +332,20 @@
       "sha512": "sha512-BLMDGGvElV3Lu0KFNHZiui8BmdRCX7Y1WPSM+PW5ZKdBMPUQ3jRriZHglEh5yDLd2luJqG9nRY2+gTPwezFF7w==",
       "path": "masstransit.abstractions/8.2.0",
       "hashPath": "masstransit.abstractions.8.2.0.nupkg.sha512"
+    },
+    "MediatR/12.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8TUFrHapKi6D74PhnSNEguRsH91HNGyP3R4ZQdgDorJgl9Wac5Prh0vA33QfrniAaS6L2xNNhc6vxzg+5AIbwA==",
+      "path": "mediatr/12.2.0",
+      "hashPath": "mediatr.12.2.0.nupkg.sha512"
+    },
+    "MediatR.Contracts/2.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-FYv95bNT4UwcNA+G/J1oX5OpRiSUxteXaUt2BJbRSdRNiIUNbggJF69wy6mnk2wYToaanpdXZdCwVylt96MpwQ==",
+      "path": "mediatr.contracts/2.0.1",
+      "hashPath": "mediatr.contracts.2.0.1.nupkg.sha512"
     },
     "Microsoft.CSharp/4.7.0": {
       "type": "package",
@@ -363,6 +430,20 @@
       "sha512": "sha512-bXJEZrW9ny8vjMF1JV253WeLhpEVzFo1lyaZu1vQ4ZxWUlVvknZ/+ftFgVheLubb4eZPSwwxBeqS1JkCOjxd8g==",
       "path": "microsoft.extensions.primitives/8.0.0",
       "hashPath": "microsoft.extensions.primitives.8.0.0.nupkg.sha512"
+    },
+    "Microsoft.NETCore.Platforms/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A==",
+      "path": "microsoft.netcore.platforms/1.1.0",
+      "hashPath": "microsoft.netcore.platforms.1.1.0.nupkg.sha512"
+    },
+    "NETStandard.Library/2.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-st47PosZSHrjECdjeIzZQbzivYBJFv6P2nv4cj2ypdI204DO+vZ7l5raGMiX4eXMJ53RfOIg+/s4DHVZ54Nu2A==",
+      "path": "netstandard.library/2.0.3",
+      "hashPath": "netstandard.library.2.0.3.nupkg.sha512"
     },
     "Newtonsoft.Json/13.0.1": {
       "type": "package",

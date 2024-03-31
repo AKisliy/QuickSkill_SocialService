@@ -10,3 +10,4 @@
 /Users/alexeykiselev/SocialService/SocialService.Core/obj/Debug/net8.0/refint/SocialService.Core.dll
 /Users/alexeykiselev/SocialService/SocialService.Core/obj/Debug/net8.0/SocialService.Core.pdb
 /Users/alexeykiselev/SocialService/SocialService.Core/obj/Debug/net8.0/ref/SocialService.Core.dll
+/Users/alexeykiselev/SocialService/SocialService.Core/obj/Debug/net8.0/SocialService.Core.csproj.AssemblyReference.cache

@@ -4,8 +4,10 @@ using SocialService.Application.Services;
 using SocialService.Core.Interfaces;
 using SocialService.Core.Interfaces.Repositories;
 using SocialService.Core.Interfaces.Services;
+using SocialService.Core.Interfaces.Utils;
 using SocialService.DataAccess;
 using SocialService.DataAccess.Repository;
+using SocialService.Infrastructure;
 using SocialService.WebApi.Extensions;
 using SocialService.WebApi.Handlers;
 
@@ -14,6 +16,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddDbContext<SocialServiceContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddControllers();
@@ -26,6 +30,8 @@ builder.Services.AddScoped<ILeagueRepository, LeagueRepository>();
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ILeagueService, LeagueService>();
+
+builder.Services.AddScoped<IBotsGenerator, BotsGenerator>();
 
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();

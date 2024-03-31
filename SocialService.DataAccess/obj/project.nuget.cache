@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "HcXv7sSAjbpPAU7DVEt/GIaQaT0Y7to2+lZl3NDom+UUqy8X7Y83fbnkqWkzvxoVfJ7Sm3Pztfc20tAMQ7qHmw==",
+  "dgSpecHash": "/EOwQzlveTALWB2DMrfIjka1lg5r+54FONKUFgX7mVqaO3pwevlKuqQ8lq/FCz0h+MukTJjewPr4VEoGriKNYA==",
   "success": true,
   "projectFilePath": "/Users/alexeykiselev/SocialService/SocialService.DataAccess/SocialService.DataAccess.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,8 @@
     "/Users/alexeykiselev/.nuget/packages/efcore.bulkextensions/8.0.2/efcore.bulkextensions.8.0.2.nupkg.sha512",
     "/Users/alexeykiselev/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/alexeykiselev/.nuget/packages/medalliontopologicalsort/1.0.0/medalliontopologicalsort.1.0.0.nupkg.sha512",
+    "/Users/alexeykiselev/.nuget/packages/mediatr/12.2.0/mediatr.12.2.0.nupkg.sha512",
+    "/Users/alexeykiselev/.nuget/packages/mediatr.contracts/2.0.1/mediatr.contracts.2.0.1.nupkg.sha512",
     "/Users/alexeykiselev/.nuget/packages/microsoft.bcl.asyncinterfaces/6.0.0/microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
     "/Users/alexeykiselev/.nuget/packages/microsoft.codeanalysis.analyzers/3.3.3/microsoft.codeanalysis.analyzers.3.3.3.nupkg.sha512",
     "/Users/alexeykiselev/.nuget/packages/microsoft.codeanalysis.common/4.5.0/microsoft.codeanalysis.common.4.5.0.nupkg.sha512",

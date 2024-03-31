@@ -28,6 +28,9 @@
             "projectReferences": {
               "/Users/alexeykiselev/SocialService/SocialService.Core/SocialService.Core.csproj": {
                 "projectPath": "/Users/alexeykiselev/SocialService/SocialService.Core/SocialService.Core.csproj"
+              },
+              "/Users/alexeykiselev/SocialService/SocialService.Shared/SocialService.Shared.csproj": {
+                "projectPath": "/Users/alexeykiselev/SocialService/SocialService.Shared/SocialService.Shared.csproj"
               }
             }
           }
@@ -41,6 +44,20 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "MassTransit": {
+              "target": "Package",
+              "version": "[8.2.0, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[12.2.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -94,6 +111,12 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "MediatR": {
+              "target": "Package",
+              "version": "[12.2.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -253,6 +276,10 @@
             "EventBus.RabbitMQ.Standard": {
               "target": "Package",
               "version": "[3.1.0, )"
+            },
+            "Faker.Net": {
+              "target": "Package",
+              "version": "[2.0.163, )"
             },
             "MassTransit": {
               "target": "Package",

@@ -7,8 +7,6 @@ using SocialService.Core.Models;
 using SocialService.Core.Models.UserModels;
 using SocialService.DataAccess.Extensions;
 using EFCore.BulkExtensions;
-using System.Runtime.CompilerServices;
-using System.Reflection;
 
 namespace SocialService.DataAccess.Repository
 {
@@ -38,9 +36,9 @@ namespace SocialService.DataAccess.Repository
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<UserLeaderboardUpdate>> AddBots(List<User> bots)
+        public async Task<List<User>> AddBots(List<User> bots)
         {
-            var botsEntityList = bots.Select(b =>
+            var botsEntityList = bots.ConvertAll(b =>
             {
                 var enity = _mapper.Map<UserEntity>(b);
                 enity.IsBot = true;
@@ -48,7 +46,7 @@ namespace SocialService.DataAccess.Repository
             });
             await _context.AddRangeAsync(botsEntityList);
             await _context.SaveChangesAsync();
-            return botsEntityList.Select(b => _mapper.Map<UserLeaderboardUpdate>(b)).ToList();
+            return botsEntityList.ConvertAll(b => _mapper.Map<User>(b));
         }
 
         public async Task DeleteUser(int id)

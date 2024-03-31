@@ -26,6 +26,8 @@ namespace SocialService.Core.Models
 
         public string? Photo { get; set; }
 
+        public bool IsBot { get; set; }
+
         public List<int> SubscritptionIds { get; set; } = [];
 
         public League? League { get; set; }

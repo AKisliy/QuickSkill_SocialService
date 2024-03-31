@@ -33,9 +33,11 @@ namespace SocialService.Core.Interfaces
 
         public Task UpdateUsersLeaderboards(Dictionary<int, List<UserLeaderboardUpdate>> usersByLeagues);
 
+        public Task UpdateUsersLeagues(Dictionary<int, List<UserLeagueUpdate>> userByLeaderboards);
+
         public Task<IEnumerable<User>> GetUserLeaderboard(int userId);
 
-        public Task<List<UserLeaderboardUpdate>> AddBots(List<User> bots);
+        public Task<List<User>> AddBots(List<User> bots);
 
         public Task<Dictionary<int, List<UserLeagueUpdate>>> GetUserGroupedByLeaderboard();
 
