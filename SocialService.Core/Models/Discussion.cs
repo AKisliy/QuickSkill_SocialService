@@ -12,7 +12,9 @@ namespace SocialService.Core.Models
 
         public int Likes { get; set; }
 
-        public DateOnly PublishedOn { get; set; }
+        public DateTime PublishedOn { get; set; }
+
+        public User? Author { get; set; }
 
         // public virtual ICollection<Answer> Answers { get; set; } = new List<Answer>();
         // нужны ли нам здесь ответы?

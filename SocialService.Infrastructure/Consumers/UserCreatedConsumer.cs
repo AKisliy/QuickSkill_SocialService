@@ -1,6 +1,6 @@
 using MassTransit;
 using Shared;
-using SocialService.Core.Interfaces;
+using SocialService.Core.Interfaces.Repositories;
 using SocialService.Core.Models;
 
 namespace SocialService.Infrastructure.EventHandlers

@@ -20,6 +20,7 @@ namespace SocialService.WebApi.Profiles
             CreateMap<UserEntity, UserLeaderboardUpdate>();
             CreateMap<User, UserLeaderboardUpdate>();
             CreateMap<User, Bot>();
+            CreateMap<User, UserInDiscussionDto>();
         }
     }
 }

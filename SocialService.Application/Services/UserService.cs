@@ -1,5 +1,5 @@
 using SocialService.Core.Exceptions;
-using SocialService.Core.Interfaces;
+using SocialService.Core.Interfaces.Repositories;
 using SocialService.Core.Interfaces.Services;
 using SocialService.Core.Models;
 

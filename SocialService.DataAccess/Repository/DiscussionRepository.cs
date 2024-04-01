@@ -36,6 +36,7 @@ namespace SocialService.DataAccess.Repository
         {
             var discussion = await _context.Discussions
                                     .AsNoTracking()
+                                    .Include(d => d.Author)
                                     .FirstOrDefaultAsync(d => d.Id == id) ?? throw new NotFoundException($"No discusson with id: {id}");
             return _mapper.Map<Discussion>(discussion);
         }
@@ -53,6 +54,7 @@ namespace SocialService.DataAccess.Repository
             return _context.Discussions
                     .AsNoTracking()
                     .OrderDiscussionsBy(orderBy)
+                    .Include(d => d.Author)
                     .Select(d => _mapper.Map<Discussion>(d));
         }
 
@@ -62,6 +64,7 @@ namespace SocialService.DataAccess.Repository
                     .AsNoTracking()
                     .OrderDiscussionsBy(orderBy)
                     .Page(page, size)
+                    .Include(d => d.Author)
                     .Select(d => _mapper.Map<Discussion>(d));
         }
 

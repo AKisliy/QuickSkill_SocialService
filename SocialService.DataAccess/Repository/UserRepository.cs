@@ -2,7 +2,7 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using SocialService.Core;
 using SocialService.Core.Exceptions;
-using SocialService.Core.Interfaces;
+using SocialService.Core.Interfaces.Repositories;
 using SocialService.Core.Models;
 using SocialService.Core.Models.UserModels;
 using SocialService.DataAccess.Extensions;

@@ -9,6 +9,8 @@ namespace SocialService.Core.Interfaces.Repositories
 
         public Task DeleteDiscussion(int discussionId);
 
+        public Task<Discussion> GetDiscussonById(int id);
+
         public IEnumerable<Discussion> GetAllDiscussions(OrderByOptions orderBy = OrderByOptions.ByDate);
 
         public IEnumerable<Discussion> GetDiscussionsPage(int page, int size, OrderByOptions orderBy = OrderByOptions.ByDate);

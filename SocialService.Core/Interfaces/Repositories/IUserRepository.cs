@@ -1,7 +1,7 @@
 using SocialService.Core.Models;
 using SocialService.Core.Models.UserModels;
 
-namespace SocialService.Core.Interfaces
+namespace SocialService.Core.Interfaces.Repositories
 {
     public interface IUserRepository
     {
