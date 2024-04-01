@@ -4,11 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 using SocialService.Core.Enums;
 using SocialService.Core.Interfaces.Services;
 using SocialService.WebApi.Dtos.ResponseDtos;
+using SocialService.WebApi.Extensions;
 
 namespace SocialService.WebApi.Controllers
 {
     [ApiController]
-    [Route("api/comment")]
+    [Route("api/social/comment")]
     public class CommentController : ControllerBase
     {
         private readonly ICommentService _commentService;
@@ -21,8 +22,9 @@ namespace SocialService.WebApi.Controllers
         }
 
         [HttpPost("lecture/{lectureId}", Name = "Create new comment")]
-        public async Task<IActionResult> CreateComment(int userId, int lectureId, string body) // user id just for now
+        public async Task<IActionResult> CreateComment(int lectureId, string body) // user id just for now
         {
+            int userId = HttpContext.GetUserIdFromHeader();
             int commentId = await _commentService.CreateComment(userId, lectureId, body);
             return Created($"api/comment/{commentId}", commentId);
         }

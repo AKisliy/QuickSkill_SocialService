@@ -1,16 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace SocialService.WebApi.Dtos.RequestDtos
 {
     public class CreateAnswerRequest
     {
+        [Required]
         public required int DiscussionId { get; set; }
 
-        public required int UserId { get; set; }
+        /// <summary>
+        /// It's not required. 
+        /// </summary>
+        public int UserId { get; set; }
 
+        [Required]
         public required string Body { get; set; }
     }
 }

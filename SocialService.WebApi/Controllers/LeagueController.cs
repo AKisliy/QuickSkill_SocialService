@@ -6,7 +6,7 @@ using SocialService.WebApi.Dtos.RequestDtos;
 namespace SocialService.WebApi.Controllers
 {
     [ApiController]
-    [Route("api/league")]
+    [Route("api/social/league")]
     public class LeagueController : ControllerBase
     {
         private readonly ILeagueService _leagueService;

@@ -1,6 +1,5 @@
 using AutoMapper;
 using MediatR;
-using SocialService.Core.Interfaces;
 using SocialService.Core.Interfaces.Repositories;
 using SocialService.Core.Interfaces.Services;
 using SocialService.Core.Interfaces.Utils;
@@ -64,8 +63,6 @@ namespace SocialService.Application.Services
         {
             if(users.Count == 0)
                 return;
-            System.Console.WriteLine(users[0].LeagueId);
-            System.Console.WriteLine(leagues.Count);
             var curLeague = leagues.First(l => l.Id == users[0].LeagueId);
             var nextLeague = leagues.Find(l => l.HierarchyPlace > curLeague.HierarchyPlace);
             var prevLeague = leagues.Find(l => l.HierarchyPlace < curLeague.HierarchyPlace);
@@ -75,7 +72,6 @@ namespace SocialService.Application.Services
                 users[leaderboardSize - i].LeagueId = prevLeague?.Id ?? users[leaderboardSize - i].LeagueId;
         }
 
-        // нужно добавить логику заполнения ботами
         private async Task CreateLeaderboards(Dictionary<int, List<UserLeaderboardUpdate>> usersInLeagues)
         {
             int id = 1;
@@ -83,20 +79,26 @@ namespace SocialService.Application.Services
             List<int> leagues = usersInLeagues.Keys.Where(x => x != undefinedLeagueIndex).ToList();
             foreach(int league in leagues)
             {
-                int cnt = usersInLeagues[league].Count;
+                int cnt = usersInLeagues[league].Count(u => !u.IsBot);
                 int leaderboardsCnt =  (cnt / leaderboardSize)  + ((cnt % leaderboardSize) == 0 ? 0 : 1);
                 int[] boards = new int[leaderboardsCnt];
-                int left = id;
                 int delta = 0;
                 foreach(var u in usersInLeagues[league])
                 {
-                    u.LeaderboardId = left + (delta % leaderboardsCnt);
-                    ++delta;
-                    ++boards[left - id + (delta % leaderboardsCnt)];
+                    if(!u.IsBot)
+                    {
+                        u.LeaderboardId = id + (delta % leaderboardsCnt);
+                        ++delta;
+                        ++boards[delta % leaderboardsCnt];
+                    }
                 }
-                id = left + leaderboardsCnt;
+                foreach(var bot in usersInLeagues[league].Where(u => u.IsBot))
+                {
+                    bot.LeaderboardId = null;
+                }
                 if((cnt % leaderboardSize) != 0)
-                    nullBotsUsed = await FillWithBotsFromLeague(boards, league, left, nullBotsUsed, usersInLeagues);
+                    nullBotsUsed = await FillWithBotsFromLeague(boards, league, id, nullBotsUsed, usersInLeagues);
+                id += leaderboardsCnt;
             }
         }
 
@@ -142,7 +144,6 @@ namespace SocialService.Application.Services
             int i = 0;
             while(botsNeeded > 0)
             {
-                Console.WriteLine(nullBots[i].IsBot);
                 if(!nullBots[nullBotsUsed + i].IsBot)
                 {
                     ++i;

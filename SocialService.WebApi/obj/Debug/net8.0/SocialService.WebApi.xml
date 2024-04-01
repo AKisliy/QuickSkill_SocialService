@@ -4,6 +4,69 @@
         <name>SocialService.WebApi</name>
     </assembly>
     <members>
+        <member name="M:SocialService.WebApi.Controllers.AnswerController.CreateNewAnswer(SocialService.WebApi.Dtos.RequestDtos.CreateAnswerRequest)">
+            <summary>
+            Create new answer (pay attention that u don't have to provide userId)
+            </summary>
+            <param name="request">Id of answer to get</param>
+            <returns>AnswerResponse object</returns>
+            <response code="201">Answer was created</response>
+            <response code="400">Bad request body</response>
+        </member>
+        <member name="M:SocialService.WebApi.Controllers.AnswerController.GetAnswer(System.Int32)">
+            <summary>
+            Get answer by ID
+            </summary>
+            <param name="id">Id of answer to get</param>
+            <returns>AnswerResponse object</returns>
+            <response code="200">Success</response>
+            <response code="404">Answer with provided ID not found</response>
+        </member>
+        <member name="M:SocialService.WebApi.Controllers.AnswerController.DeleteAnswer(System.Int32)">
+            <summary>
+            Get answers page
+            </summary>
+            <param name="id">Id of answer to delete</param>
+            <response code="200">Success</response>
+            <response code="404">Answer with provided ID not found</response>
+        </member>
+        <member name="M:SocialService.WebApi.Controllers.AnswerController.EditAnswer(System.Int32,System.String)">
+            <summary>
+            Get answers page
+            </summary>
+            <param name="id">Id of answer to edit</param>
+            <param name="newBody">New comment text</param>
+            <response code="200">Success</response>
+            <response code="404">Answer with provided ID not found</response>
+        </member>
+        <member name="M:SocialService.WebApi.Controllers.AnswerController.GetAnswersPageForDiscussion(System.Int32,System.Int32,System.Int32,SocialService.Core.Enums.OrderByOptions)">
+            <summary>
+            Get answers page
+            </summary>
+            <param name="discussionId">Id of discussion, for which u need answers</param>
+            <param name="page">Number of page to get(0-indexed)</param>
+            <param name="pageSize">Size of the page(>=1)</param>
+            <param name="options">Rule of sorting</param>
+            <returns>List of AnswerResponse</returns>
+            <response code="200">Success</response>
+            <response code="404">Discussion with provided ID not found</response>
+        </member>
+        <member name="M:SocialService.WebApi.Controllers.DiscussionController.CreateDiscussion(SocialService.WebApi.Dtos.RequestDtos.CreateDiscussionRequest)">
+            <summary>
+            Create discussion (pay attention, that you DON'T have to provide userId)
+            </summary>
+            <param name="request">Id of discussion</param>
+            <response code="200">Success</response>
+            <response code="400">Bad request</response>
+        </member>
+        <member name="M:SocialService.WebApi.Controllers.DiscussionController.DeleteDiscussion(System.Int32)">
+            <summary>
+            Delete discussion
+            </summary>
+            <param name="id">Id of discussion</param>
+            <response code="200">Success</response>
+            <response code="404">Discussion with provided id is not found</response>
+        </member>
         <member name="M:SocialService.WebApi.Controllers.DiscussionController.GetDiscussionsPage(System.Int32,System.Int32,SocialService.Core.Enums.OrderByOptions)">
             <summary>
             Get discussions page
@@ -11,18 +74,91 @@
             <param name="page">Number of page to get(0-indexed)</param>
             <param name="pageSize">Size of the page(>=1)</param>
             <param name="sortBy">Rule of sorting</param>
-            <returns>List of UserResponse</returns>
+            <returns>List of DiscussionOnPageResponse</returns>
             <response code="200">Success</response>
             <response code="400">Bad request</response>
         </member>
+        <member name="M:SocialService.WebApi.Controllers.DiscussionController.GetDiscussion(System.Int32)">
+            <summary>
+            Get discussion
+            </summary>
+            <param name="id">Id of discussion</param>
+            <response code="200">Success</response>
+            <response code="404">Discussion with provided id is not found</response>
+        </member>
+        <member name="M:SocialService.WebApi.Controllers.UserController.CreateUser(SocialService.WebApi.Dtos.RequestDtos.AddUserDto)">
+            <summary>
+            It's for testing, don't use it.
+            </summary>
+        </member>
+        <member name="M:SocialService.WebApi.Controllers.UserController.SearchUserByUsername(System.Int32,System.String,System.Int32,System.Int32)">
+            <summary>
+            Search user by username (for testing, provide ID of user, who makes the request)
+            </summary>
+            <param name="id">ID of user, who makes the request</param>
+            <param name="userName">Username to search </param>
+            <param name="page">Number of page to get(0 - indexed)</param>
+            <param name="pageSize">Size of the page to get</param>
+            <response code="200">Success</response>
+            <response code="404">User with ID not found</response>
+            <response code="500">Server problems :(</response>
+        </member>
+        <member name="M:SocialService.WebApi.Controllers.UserController.SearchUserByUsernameByHeader(System.String,System.Int32,System.Int32)">
+            <summary>
+            Search user by username (Use when NGINX is running. You just need to have token in cookies)
+            </summary>
+            <param name="userName">Username to search </param>
+            <param name="page">Number of page to get(0 - indexed)</param>
+            <param name="pageSize">Size of the page to get</param>
+            <response code="200">Success</response>
+            <response code="404">User with ID not found</response>
+            <response code="500">Server problems :(</response>
+        </member>
         <member name="M:SocialService.WebApi.Controllers.UserController.GetRecommendation(System.Int32,System.Int32)">
             <summary>
-            Get recommended subscriptions for user(based on leaderboard)
+            Get recommended subscriptions for user(based on leaderboard)(for testing. Provide ID of user, who makes the request)
             </summary>
+            <param name="id">ID of user, who makes the request</param>
             <param name="pageSize">Count of users to get</param>
-            <returns>ID of badge + uri</returns>
+            <returns>Leaderboard for user with ID</returns>
             <response code="200">Success</response>
             <response code="400">User not found</response>
+        </member>
+        <member name="M:SocialService.WebApi.Controllers.UserController.GetRecommendationByHeader(System.Int32)">
+            <summary>
+            Get recommended subscriptions for user(based on leaderboard)(Use when NGINX is running. You just need to have token in cookies)
+            </summary>
+            <param name="pageSize">Count of users to get</param>
+            <returns>Recommendation for user</returns>
+            <response code="200">Success</response>
+            <response code="400">User not found</response>
+        </member>
+        <member name="M:SocialService.WebApi.Controllers.UserController.GetUserLeaderboard(System.Int32)">
+            <summary>
+            Get user's leaderboard.
+            </summary>
+            <param name="id">Id of user</param>
+            <returns>Leaderboard for user</returns>
+            <response code="200">Success</response>
+            <response code="400">User not found</response>
+        </member>
+        <member name="M:SocialService.WebApi.Controllers.UserController.GetUserLeaderboardByHeader">
+            <summary>
+            Get user's leaderboard. (Use when NGINX is running. You just need to have token in cookies)
+            </summary>
+            <returns>Leaderboard for user</returns>
+            <response code="200">Success</response>
+            <response code="404">User not found</response>
+        </member>
+        <member name="P:SocialService.WebApi.Dtos.RequestDtos.CreateAnswerRequest.UserId">
+            <summary>
+            It's not required. 
+            </summary>
+        </member>
+        <member name="P:SocialService.WebApi.Dtos.RequestDtos.CreateDiscussionRequest.UserId">
+            <summary>
+            It's not required
+            </summary>
         </member>
     </members>
 </doc>

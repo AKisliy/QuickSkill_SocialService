@@ -190,7 +190,7 @@ namespace SocialService.DataAccess.Repository
             return  await _context.Users
                             .AsNoTracking()
                             .Where(u => u.LeaderboardId != null)
-                            .Select(u => new UserLeagueUpdate{ Id = u.Id, LeaderboardId = u.LeaderboardId, LeagueId = u.LeagueId, WeeklyXp = u.WeeklyXp})
+                            .Select(u => new UserLeagueUpdate{ Id = u.Id, LeaderboardId = u.LeaderboardId, LeagueId = u.LeagueId, WeeklyXp = u.WeeklyXp, IsBot = u.IsBot})
                             .GroupBy(u => (int)u.LeaderboardId)
                             .ToDictionaryAsync(p => p.Key, p => p.OrderBy(p => p.Id).ToList());
         }
@@ -200,7 +200,7 @@ namespace SocialService.DataAccess.Repository
             return await _context.Users
                             .AsNoTracking()
                             .Where(u => u.LeaderboardId == null)
-                            .Select(u => new UserLeagueUpdate{ Id = u.Id, LeaderboardId = u.LeaderboardId, LeagueId = u.LeagueId, WeeklyXp = u.WeeklyXp})
+                            .Select(u => new UserLeagueUpdate{ Id = u.Id, LeaderboardId = u.LeaderboardId, LeagueId = u.LeagueId, WeeklyXp = u.WeeklyXp, IsBot = u.IsBot})
                             .ToListAsync();
         }
 
@@ -225,7 +225,7 @@ namespace SocialService.DataAccess.Repository
                     WeeklyXp = 0,
                     LeagueId = u.LeagueId
                 }).ToList();
-            await _context.BulkUpdateAsync(usersToUpdate, options => options.PropertiesToInclude = ["LeaderboardId", "LeagueId", "WeeklyXp"]);
+            await _context.BulkUpdateAsync(usersToUpdate, options => options.PropertiesToInclude = ["LeagueId", "WeeklyXp"]);
         }
 
         private async Task<UserEntity> GetTrackedUserById(int userId)
