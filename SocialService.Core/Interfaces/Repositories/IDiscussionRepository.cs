@@ -22,5 +22,7 @@ namespace SocialService.Core.Interfaces.Repositories
         public Task DecreaseDiscussionLikes(int discussionId);
 
         public Task<bool> HasDiscussionWithId(int id);
+
+        public Task Update(Discussion discussion);
     }
 }

@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "4Phs9lZUQF9x3Q9ZxuRBDb+5AGuaNWxyItyU08dLI8v5zHDSu/p2R99rq4rbRVavCKGtlvomXuTP1//95ijmpQ==",
+  "dgSpecHash": "uuYSQ5Kp1B3CtdT7pBlxzwUYum25klV2sPENHGsW0y79F6GBC+V9Gs9dffrr8nzk/jvtbGNbh+vIGSl5ozEo9Q==",
   "success": true,
   "projectFilePath": "/Users/alexeykiselev/SocialService/SocialService.Infrastructure/SocialService.Infrastructure.csproj",
   "expectedPackageFiles": [
+    "/Users/alexeykiselev/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
+    "/Users/alexeykiselev/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/12.0.1/automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "/Users/alexeykiselev/.nuget/packages/eventbus.base.standard/1.0.2/eventbus.base.standard.1.0.2.nupkg.sha512",
     "/Users/alexeykiselev/.nuget/packages/eventbus.rabbitmq.standard/3.1.0/eventbus.rabbitmq.standard.3.1.0.nupkg.sha512",
     "/Users/alexeykiselev/.nuget/packages/faker.net/2.0.163/faker.net.2.0.163.nupkg.sha512",

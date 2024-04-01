@@ -20,7 +20,7 @@ namespace SocialService.DataAccess.Extensions
             return option switch
             {
                 OrderByOptions.SimpleOrder => discussions.OrderBy(d => d.Id),
-                OrderByOptions.ByAnswerAmount => discussions.OrderByDescending(d => d.Answers.Count),
+                OrderByOptions.ByAnswerAmount => discussions.OrderByDescending(d => d.AnswersCount),
                 OrderByOptions.ByDate => discussions.OrderByDescending(d => d.PublishedOn),
                 OrderByOptions.ByLikes => discussions.OrderByDescending(d => d.Likes),
                 _ => throw new InvalidOperationException($"No such option {option} to order")

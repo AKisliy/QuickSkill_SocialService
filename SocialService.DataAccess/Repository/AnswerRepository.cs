@@ -26,12 +26,15 @@ namespace SocialService.DataAccess.Repository
             var hasDiscussion = await _discussionRepository.HasDiscussionWithId(discussionId);
             if(!hasDiscussion)
                 throw new NotFoundException($"No discussion with thid id: {discussionId}");
+            var discussion = await _discussionRepository.GetDiscussonById(discussionId);
             var answer = new AnswerEntity
             {
                 UserId = userId,
                 DiscussionId = discussionId,
                 Body = body
             };
+            discussion.AnswersCount++;
+            await _discussionRepository.Update(discussion);
             await _context.Answers.AddAsync(answer);
             await _context.SaveChangesAsync();
             return answer.Id;
@@ -41,6 +44,10 @@ namespace SocialService.DataAccess.Repository
         {
             if(!await HasAnswerWithId(id))
                 throw new NotFoundException($"No answer with id: {id}");
+            var answer = _context.Answers.Where(a => a.Id == id).Single();
+            var discussion = await _discussionRepository.GetDiscussonById(answer.DiscussionId);
+            discussion.AnswersCount--;
+            await _discussionRepository.Update(discussion);
             await _context.Answers.Where(a => a.Id == id).ExecuteDeleteAsync();
             await _context.SaveChangesAsync();
         }

@@ -12,6 +12,8 @@ namespace SocialService.Core.Models
 
         public int Likes { get; set; }
 
+        public int AnswersCount { get; set; }
+
         public DateTime PublishedOn { get; set; }
 
         public User? Author { get; set; }

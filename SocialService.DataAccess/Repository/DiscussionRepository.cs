@@ -95,6 +95,13 @@ namespace SocialService.DataAccess.Repository
             await _context.SaveChangesAsync();
         }
 
+        public async Task Update(Discussion discussion)
+        {
+            var entity = _mapper.Map<DiscussionEntity>(discussion);
+            await _context.SingleUpdateAsync(entity);
+            await _context.SaveChangesAsync();
+        }
+
         private async Task<DiscussionEntity> GetTrackedDisscussionById(int id)
         {
             return await _context.Discussions.FirstOrDefaultAsync(d => d.Id == id) ??

@@ -137,3 +137,4 @@
 /Users/alexeykiselev/SocialService/SocialService.WebApi/bin/Debug/net8.0/MediatR.Contracts.dll
 /Users/alexeykiselev/SocialService/SocialService.WebApi/bin/Debug/net8.0/SocialService.WebApi.xml
 /Users/alexeykiselev/SocialService/SocialService.WebApi/obj/Debug/net8.0/SocialService.WebApi.xml
+/Users/alexeykiselev/SocialService/SocialService.WebApi/bin/Debug/net8.0/appsettings.InDocker.json

@@ -12,6 +12,8 @@ public class DiscussionEntity
 
     public int Likes { get; set; }
 
+    public int AnswersCount { get; set; }
+
     public DateTime PublishedOn { get; set; }
 
     public virtual ICollection<AnswerEntity> Answers { get; set; } = new List<AnswerEntity>();

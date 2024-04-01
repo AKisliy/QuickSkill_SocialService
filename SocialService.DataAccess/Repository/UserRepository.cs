@@ -59,11 +59,8 @@ namespace SocialService.DataAccess.Repository
         {
             if(!await HasUserWithId(user.Id))
                 throw new NotFoundException($"No user with id: {user.Id}");
-            await _context.Users.Where(u => u.Id == user.Id).ExecuteUpdateAsync(s => s
-                .SetProperty(u => u.FirstName, _ => user.FirstName)
-                .SetProperty(u => u.LastName, _ => user.LastName)
-                .SetProperty(u => u.Username, _ => user.Username)
-                .SetProperty(u => u.Status, _ => user.Status));
+            var entity = _mapper.Map<UserEntity>(user);
+            _context.SingleUpdate(entity);
             await _context.SaveChangesAsync();
         }
 

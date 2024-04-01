@@ -10,6 +10,8 @@ namespace SocialService.WebApi.Dtos.ResponseDtos
 
         public int Likes { get; set; }
 
+        public int AnswersCount { get; set; }
+
         public DateTime PublishedOn { get; set; }
     }
 }

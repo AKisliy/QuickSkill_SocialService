@@ -9,7 +9,7 @@ namespace SocialService.WebApi.Profiles
     {
         public DiscussionProfile()
         {
-            CreateMap<DiscussionEntity, Discussion>();
+            CreateMap<DiscussionEntity, Discussion>().ReverseMap();
             CreateMap<Discussion, DiscussionDto>();
         }
     }

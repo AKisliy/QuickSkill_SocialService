@@ -9,6 +9,7 @@ using SocialService.Core.Interfaces.Utils;
 using SocialService.DataAccess;
 using SocialService.DataAccess.Repository;
 using SocialService.Infrastructure;
+using SocialService.Infrastructure.Options;
 using SocialService.WebApi.Extensions;
 using SocialService.WebApi.Handlers;
 
@@ -21,6 +22,8 @@ builder.Services.AddSwaggerGen(c =>
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
     c.IncludeXmlComments(xmlPath);
 });
+
+builder.Services.Configure<RabbitMQOptions>(builder.Configuration.GetSection(nameof(RabbitMQOptions)));
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -44,8 +47,20 @@ builder.Services.AddScoped<IBotsGenerator, BotsGenerator>();
 
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
-builder.Services.AddMassTransitWithRabbitMQ();
+builder.Services.AddMassTransitWithRabbitMQ(builder.Configuration);
 builder.Services.AddHangfireToApp(builder.Configuration);
+
+builder.Services.AddCors(options =>
+    {
+        options.AddPolicy("AllowSpecificOrigin",
+            builder =>
+            {
+                builder.WithOrigins("http://localhost:3000") // Specify the origin of your client application
+                       .AllowAnyHeader()
+                       .AllowAnyMethod();
+            });
+    }
+);
 
 // var rabbitMqOptions = builder.Configuration.GetSection("RabbitMq").Get<RabbitMqOptions>();
 // builder.Services.AddRabbitMqConnection(rabbitMqOptions);
@@ -57,12 +72,13 @@ var app = builder.Build();
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || app.Environment.IsEnvironment("InDocker"))
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-//app.ConfigureEventBus();
+
+app.UseCors("AllowSpecificOrigin");
 app.UseHangfireDashboard();
 app.ConfigureHangfireTasks();
 app.UseExceptionHandler();

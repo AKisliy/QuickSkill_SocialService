@@ -117,6 +117,9 @@ public partial class SocialServiceContext : DbContext
                 .HasColumnType("timestamp without time zone")
                 .HasColumnName("publishedon");
             entity.Property(e => e.Title).HasColumnName("title");
+            entity.Property(e => e.AnswersCount)
+                .HasDefaultValue(0)
+                .HasColumnName("answerscount");
 
             entity.HasOne(d => d.Author).WithMany(p => p.Discussions)
                 .HasForeignKey(d => d.AuthorId)

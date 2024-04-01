@@ -56,7 +56,7 @@ namespace SocialService.WebApi.Controllers
             var res =  _discussionService.GetDiscussions(page, pageSize, sortBy);
             var response = res.Select(d => new DiscussionOnPageResponse 
             {
-                Discussion = new DiscussionDto{Id = d.Id, Title = d.Title, Body = d.Body, Likes = d.Likes, PublishedOn = d.PublishedOn},
+                Discussion = new DiscussionDto{Id = d.Id, Title = d.Title, Body = d.Body, Likes = d.Likes, PublishedOn = d.PublishedOn, AnswersCount = d.AnswersCount},
                 Author = _mapper.Map<UserCardDto>(d.Author)
             });
             return Ok(response);

@@ -21,6 +21,7 @@ namespace SocialService.WebApi.Profiles
             CreateMap<User, UserLeaderboardUpdate>();
             CreateMap<User, Bot>();
             CreateMap<User, UserCardDto>();
+            CreateMap<UserChangedEvent, User>();
         }
     }
 }
