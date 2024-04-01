@@ -15,6 +15,7 @@ namespace SocialService.WebApi.Extensions
             {
                 x.AddConsumer<UserCreatedConsumer>();
                 x.AddConsumer<UserChangedConsumer>();
+                x.AddConsumer<UserDeletedConsumer>();
 
                 x.UsingRabbitMq((context, cfg) =>
                 {
@@ -26,6 +27,7 @@ namespace SocialService.WebApi.Extensions
 
                     cfg.ReceiveEndpoint("UserCreatedQueue", e => e.Consumer<UserCreatedConsumer>(context));
                     cfg.ReceiveEndpoint("UserChangedQueue", e => e.Consumer<UserChangedConsumer>(context));
+                    cfg.ReceiveEndpoint("UserDeletedQueue", e => e.Consumer<UserDeletedConsumer>(context));
                 });
             });
         }
