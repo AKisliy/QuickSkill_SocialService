@@ -1,6 +1,6 @@
-namespace SocialService.Core.Models
+namespace SocialService.WebApi.Dtos.ResponseDtos
 {
-    public class Answer
+    public class AnswerResponse
     {
         public int Id { get; set; }
 

@@ -88,13 +88,21 @@ namespace SocialService.DataAccess.Repository
 
         public async Task EditAnswer(int answerId, string newBody)
         {
-            var answer = await GetAnswerById(answerId);
+            var answer = await GetTrackedAnswerById(answerId);
             answer.Body = newBody;
-            answer.EditedOn = DateTime.UtcNow;
+            answer.EditedOn = DateTime.UtcNow.AddHours(3);
             await _context.SaveChangesAsync();
         }
 
-        private async Task<AnswerEntity> GetAnswerById(int id)
+        public async Task<Answer> GetAnswerById(int id)
+        {
+            var entity =  await _context.Answers
+                            .AsNoTracking()
+                            .FirstOrDefaultAsync(a => a.Id == id) ?? throw new NotFoundException($"No answer with id: {id}");
+            return _mapper.Map<Answer>(entity);
+        }
+
+        private async Task<AnswerEntity> GetTrackedAnswerById(int id)
         {
             return await _context.Answers.FirstOrDefaultAsync(a => a.Id == id) ?? throw new NotFoundException($"No answer with id {id}");
         }

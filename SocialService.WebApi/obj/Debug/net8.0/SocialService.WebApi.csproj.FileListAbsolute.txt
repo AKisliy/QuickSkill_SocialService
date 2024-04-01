@@ -135,3 +135,5 @@
 /Users/alexeykiselev/SocialService/SocialService.WebApi/bin/Debug/net8.0/de-DE/Faker.Net.6.0.resources.dll
 /Users/alexeykiselev/SocialService/SocialService.WebApi/bin/Debug/net8.0/MediatR.dll
 /Users/alexeykiselev/SocialService/SocialService.WebApi/bin/Debug/net8.0/MediatR.Contracts.dll
+/Users/alexeykiselev/SocialService/SocialService.WebApi/bin/Debug/net8.0/SocialService.WebApi.xml
+/Users/alexeykiselev/SocialService/SocialService.WebApi/obj/Debug/net8.0/SocialService.WebApi.xml

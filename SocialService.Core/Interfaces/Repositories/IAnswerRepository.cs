@@ -18,5 +18,7 @@ namespace SocialService.Core.Interfaces.Repositories
         public Task DecreaseAnswerLikes(int answerId);
 
         public Task EditAnswer(int answerId, string newBody);
+
+        public Task<Answer> GetAnswerById(int id);
     }
 }
