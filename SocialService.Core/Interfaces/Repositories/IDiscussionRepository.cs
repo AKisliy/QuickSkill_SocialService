@@ -11,6 +11,8 @@ namespace SocialService.Core.Interfaces.Repositories
 
         public Task<Discussion> GetDiscussonById(int id);
 
+        public Task<Discussion> GetDiscussionWithAnswersById(int id);
+
         public IEnumerable<Discussion> GetAllDiscussions(OrderByOptions orderBy = OrderByOptions.ByDate);
 
         public IEnumerable<Discussion> GetDiscussionsPage(int page, int size, OrderByOptions orderBy = OrderByOptions.ByDate);

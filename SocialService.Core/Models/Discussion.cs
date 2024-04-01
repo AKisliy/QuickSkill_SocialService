@@ -16,7 +16,6 @@ namespace SocialService.Core.Models
 
         public User? Author { get; set; }
 
-        // public virtual ICollection<Answer> Answers { get; set; } = new List<Answer>();
-        // нужны ли нам здесь ответы?
+        public ICollection<Answer>? Answers { get; set; }
     }
 }

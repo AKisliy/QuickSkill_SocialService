@@ -41,6 +41,17 @@ namespace SocialService.DataAccess.Repository
             return _mapper.Map<Discussion>(discussion);
         }
 
+        public async Task<Discussion> GetDiscussionWithAnswersById(int id)
+        {
+            var discussion = await _context.Discussions
+                                    .AsNoTracking()
+                                    .Include(d => d.Author)
+                                    .Include(d => d.Answers)
+                                    .ThenInclude(a => a.User)
+                                    .FirstOrDefaultAsync(d => d.Id == id) ?? throw new NotFoundException($"No discusson with id: {id}");
+            return _mapper.Map<Discussion>(discussion);
+        }
+
         public async Task DeleteDiscussion(int discussionId)
         {
             if(!await HasDiscussionWithId(discussionId))

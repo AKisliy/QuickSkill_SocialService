@@ -14,8 +14,8 @@ namespace SocialService.WebApi.Controllers
     [Route("api/discussion")]
     public class DiscussionController : ControllerBase
     {
-        private IDiscussionService _discussionService;
-        private IMapper _mapper;
+        private readonly IDiscussionService _discussionService;
+        private readonly IMapper _mapper;
 
         public DiscussionController(IDiscussionService discussionService, IMapper mapper)
         {
@@ -44,6 +44,7 @@ namespace SocialService.WebApi.Controllers
         /// </summary>
         /// <param name="page">Number of page to get(0-indexed)</param>
         /// <param name="pageSize">Size of the page(>=1)</param>
+        /// <param name="sortBy">Rule of sorting</param>
         /// <returns>List of UserResponse</returns>
         /// <response code="200">Success</response>
         /// <response code="400">Bad request</response>
@@ -52,13 +53,24 @@ namespace SocialService.WebApi.Controllers
         [ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.BadRequest)]
         public IActionResult GetDiscussionsPage(int page, int pageSize, [FromQuery] OrderByOptions sortBy)
         {
-            var res =  _discussionService.GetDiscussions(page, pageSize, OrderByOptions.ByDate);
-            var response = res.Select(d => new DiscussionResponse 
+            var res =  _discussionService.GetDiscussions(page, pageSize, sortBy);
+            var response = res.Select(d => new DiscussionOnPageResponse 
             {
                 Discussion = new DiscussionDto{Id = d.Id, Title = d.Title, Body = d.Body, Likes = d.Likes, PublishedOn = d.PublishedOn},
-                Author = _mapper.Map<UserInDiscussionDto>(d.Author)
+                Author = _mapper.Map<UserCardDto>(d.Author)
             });
             return Ok(response);
+        }
+
+        [HttpGet("{id}", Name = "Get discussion")]
+        public async Task<IActionResult> GetDiscussion(int id)
+        {
+            var discussion = await _discussionService.GetDiscussion(id);
+            return Ok(new DiscussionResponse 
+            {
+                Discussion = _mapper.Map<DiscussionDto>(discussion),
+                Author = _mapper.Map<UserCardDto>(discussion.Author),
+            });
         }
     }
 }

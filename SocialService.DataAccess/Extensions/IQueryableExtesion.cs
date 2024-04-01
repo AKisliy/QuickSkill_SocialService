@@ -9,7 +9,7 @@ namespace SocialService.DataAccess.Extensions
             return option switch
             {
                 OrderByOptions.SimpleOrder => answers.OrderBy(a => a.Id),
-                OrderByOptions.ByDate => answers.OrderBy(a => a.PublishedOn),
+                OrderByOptions.ByDate => answers.OrderByDescending(a => a.PublishedOn),
                 OrderByOptions.ByLikes => answers.OrderByDescending(a => a.Likes),
                 _ => throw new InvalidOperationException($"No such option {option} to order")
             };
@@ -20,9 +20,9 @@ namespace SocialService.DataAccess.Extensions
             return option switch
             {
                 OrderByOptions.SimpleOrder => discussions.OrderBy(d => d.Id),
-                OrderByOptions.ByAnswerAmount => discussions.OrderBy(d => d.Answers.Count),
-                OrderByOptions.ByDate => discussions.OrderBy(d => d.PublishedOn),
-                OrderByOptions.ByLikes => discussions.OrderBy(d => d.Likes),
+                OrderByOptions.ByAnswerAmount => discussions.OrderByDescending(d => d.Answers.Count),
+                OrderByOptions.ByDate => discussions.OrderByDescending(d => d.PublishedOn),
+                OrderByOptions.ByLikes => discussions.OrderByDescending(d => d.Likes),
                 _ => throw new InvalidOperationException($"No such option {option} to order")
             };
         }
@@ -32,8 +32,8 @@ namespace SocialService.DataAccess.Extensions
             return option switch
             {
                 OrderByOptions.SimpleOrder => comments.OrderBy(c => c.Id),
-                OrderByOptions.ByDate => comments.OrderBy(c => c.PublishedOn),
-                OrderByOptions.ByLikes => comments.OrderBy(c => c.Likes),
+                OrderByOptions.ByDate => comments.OrderByDescending(c => c.PublishedOn),
+                OrderByOptions.ByLikes => comments.OrderByDescending(c => c.Likes),
                 _ => throw new InvalidOperationException($"No such option {option} to order")
             };
         }

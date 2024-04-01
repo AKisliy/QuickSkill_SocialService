@@ -15,5 +15,7 @@ namespace SocialService.Core.Models
         public DateTime PublishedOn { get; set; }
 
         public DateTime? EditedOn { get; set; }
+
+        public User? User { get; set; }
     }
 }

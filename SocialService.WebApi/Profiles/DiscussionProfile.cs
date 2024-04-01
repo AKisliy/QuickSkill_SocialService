@@ -1,6 +1,7 @@
 using AutoMapper;
 using SocialService.Core.Models;
 using SocialService.DataAccess;
+using SocialService.WebApi.Dtos.ResponseDtos;
 
 namespace SocialService.WebApi.Profiles
 {
@@ -9,6 +10,7 @@ namespace SocialService.WebApi.Profiles
         public DiscussionProfile()
         {
             CreateMap<DiscussionEntity, Discussion>();
+            CreateMap<Discussion, DiscussionDto>();
         }
     }
 }

@@ -1,3 +1,4 @@
+using SocialService.Core.Enums;
 using SocialService.Core.Models;
 
 namespace SocialService.Core.Interfaces.Services
@@ -11,5 +12,7 @@ namespace SocialService.Core.Interfaces.Services
         public Task DeleteAnswer(int id);
 
         public Task EditAnswer(int id, string newBody);
+
+        public Task<IEnumerable<Answer>> GetAnswersPage(int discussionId, int page, int pageSize, OrderByOptions orderBy);
     }
 }

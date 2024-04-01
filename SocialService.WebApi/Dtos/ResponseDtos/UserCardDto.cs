@@ -1,6 +1,6 @@
 namespace SocialService.WebApi.Dtos.ResponseDtos
 {
-    public class UserInDiscussionDto
+    public class UserCardDto
     {
         public int Id { get; set; }
 
@@ -11,5 +11,7 @@ namespace SocialService.WebApi.Dtos.ResponseDtos
         public string Status { get; set; } = null!;
 
         public string Username { get; set; } = null!;
+
+        public string? Photo { get; set; }
     }
 }

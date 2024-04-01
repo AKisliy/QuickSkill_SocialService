@@ -1,6 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using AutoMapper;
+using MassTransit.Initializers;
 using Microsoft.AspNetCore.Mvc;
+using SocialService.Core.Enums;
 using SocialService.Core.Interfaces.Services;
 using SocialService.WebApi.Dtos.RequestDtos;
 using SocialService.WebApi.Dtos.ResponseDtos;
@@ -46,6 +48,13 @@ namespace SocialService.WebApi.Controllers
         {
             await _answerService.EditAnswer(id, newBody);
             return Ok();
+        }
+
+        [HttpGet("discussion/{discussionId}", Name = "Get answers for discussion")]
+        public async Task<IActionResult> GetAnswersPageForDiscussion(int discussionId, int page, int pageSize, OrderByOptions options)
+        {
+            var result = await _answerService.GetAnswersPage(discussionId, page, pageSize, options);
+            return Ok(result.Select(a => _mapper.Map<AnswerResponse>(a)));
         }
     }
 }

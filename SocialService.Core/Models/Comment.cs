@@ -12,8 +12,10 @@ namespace SocialService.Core.Models
 
         public int Likes { get; set; }
 
-        public DateOnly PublishedOn { get; set; }
+        public DateTime PublishedOn { get; set; }
 
-        public DateOnly? EditedOn { get; set; }
+        public DateTime? EditedOn { get; set; }
+
+        public User? User { get; set; }
     }
 }

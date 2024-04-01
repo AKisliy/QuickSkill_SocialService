@@ -34,5 +34,11 @@ namespace SocialService.Application.Services
                 throw new BadRequestException("Page should be greater or equal to 0. Page size should be positive");
             return _discussionRepository.GetDiscussionsPage(page, pageSize, orderByOptions);
         }
+
+        public async Task<Discussion> GetDiscussion(int id)
+        {
+            // return await _discussionRepository.GetDiscussionWithAnswersById(id); // i think we don't need answers here, because i have separate endpoint for answers
+            return await _discussionRepository.GetDiscussonById(id);
+        }
     }
 }

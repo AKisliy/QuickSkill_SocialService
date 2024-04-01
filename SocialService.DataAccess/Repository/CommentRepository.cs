@@ -95,8 +95,9 @@ namespace SocialService.DataAccess.Repository
                     .Where(c => c.LectureId == lectureId)
                     .OrderCommentsBy(options)
                     .Page(page, size)
+                    .Include(c => c.User)
                     .Select(c => _mapper.Map<Comment>(c));
-        }   
+        }
 
         private async Task<bool> HasCommentWithId(int id)
         {

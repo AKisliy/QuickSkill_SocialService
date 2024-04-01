@@ -10,6 +10,7 @@
             </summary>
             <param name="page">Number of page to get(0-indexed)</param>
             <param name="pageSize">Size of the page(>=1)</param>
+            <param name="sortBy">Rule of sorting</param>
             <returns>List of UserResponse</returns>
             <response code="200">Success</response>
             <response code="400">Bad request</response>

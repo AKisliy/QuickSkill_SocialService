@@ -1,4 +1,6 @@
 using SocialService.Core;
+using SocialService.Core.Enums;
+using SocialService.Core.Exceptions;
 using SocialService.Core.Interfaces.Repositories;
 using SocialService.Core.Interfaces.Services;
 using SocialService.Core.Models;
@@ -39,6 +41,13 @@ namespace SocialService.Application.Services
             if(answer.Body == newBody)
                 return;
             await _answerRepository.EditAnswer(id, newBody);
+        }
+
+        public async Task<IEnumerable<Answer>> GetAnswersPage(int discussionId, int page, int pageSize, OrderByOptions orderBy)
+        {
+            if(page < 0 || pageSize <= 0)
+                throw new BadRequestException("Page number should be >= 0/page size should be > 0");
+            return await _answerRepository.GetAnswersPage(discussionId, page, pageSize, orderBy);
         }
     }
 }
