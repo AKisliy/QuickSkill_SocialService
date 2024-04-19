@@ -62,11 +62,6 @@ builder.Services.AddCors(options =>
     }
 );
 
-// var rabbitMqOptions = builder.Configuration.GetSection("RabbitMq").Get<RabbitMqOptions>();
-// builder.Services.AddRabbitMqConnection(rabbitMqOptions);
-// builder.Services.AddRabbitMqRegistration(rabbitMqOptions);
-// builder.Services.AddEventBus();
-
 var app = builder.Build();
 
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);

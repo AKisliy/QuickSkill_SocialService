@@ -72,6 +72,7 @@ namespace SocialService.DataAccess.Repository
             return _context.Answers
                 .AsNoTracking()
                 .Where(a => a.DiscussionId == discussionId)
+                .Include(a => a.User)
                 .OrderAnswersBy(orderBy)
                 .Page(page, size)
                 .Select(a => _mapper.Map<Answer>(a));

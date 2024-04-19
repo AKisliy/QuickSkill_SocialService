@@ -112,7 +112,11 @@ namespace SocialService.WebApi.Controllers
         public async Task<IActionResult> GetAnswersPageForDiscussion(int discussionId, int page, int pageSize, OrderByOptions options)
         {
             var result = await _answerService.GetAnswersPage(discussionId, page, pageSize, options);
-            return Ok(result.Select(a => _mapper.Map<AnswerResponse>(a)));
+            return Ok(result.Select(a => {
+                var res = _mapper.Map<AnswerResponse>(a);
+                res.User = _mapper.Map<UserCardDto>(a.User);
+                return res;
+            }));
         }
     }
 }

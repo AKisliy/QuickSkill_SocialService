@@ -1,4 +1,6 @@
+using System.Diagnostics.CodeAnalysis;
 using Hangfire;
+using Hangfire.Dashboard;
 using Hangfire.PostgreSql;
 using SocialService.Application.Services;
 using SocialService.Core.Interfaces.Services;
@@ -10,7 +12,6 @@ namespace SocialService.WebApi.Extensions
         public static void AddHangfireToApp(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddHangfire(config => config.UsePostgreSqlStorage(configuration.GetConnectionString("DefaultConnection")));
-            services.AddHangfireServer();
             services.AddScoped<ILeaderboardService, LeaderboardService>();
         }
 
