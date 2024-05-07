@@ -11,5 +11,5 @@ public partial class Feedback
 
     public string Body { get; set; } = null!;
 
-    public virtual User User { get; set; } = null!;
+    public virtual UserEntity User { get; set; } = null!;
 }

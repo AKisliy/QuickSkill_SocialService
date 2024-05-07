@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialService.Infrastructur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialService.WebApi", "SocialService.WebApi\SocialService.WebApi.csproj", "{3B0FE8A0-2311-418C-9567-39F64E357F60}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialService.Shared", "SocialService.Shared\SocialService.Shared.csproj", "{B27FBAEC-EE15-4FC6-B2C5-DB70352F8CB8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{3B0FE8A0-2311-418C-9567-39F64E357F60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B0FE8A0-2311-418C-9567-39F64E357F60}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B0FE8A0-2311-418C-9567-39F64E357F60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B27FBAEC-EE15-4FC6-B2C5-DB70352F8CB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B27FBAEC-EE15-4FC6-B2C5-DB70352F8CB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B27FBAEC-EE15-4FC6-B2C5-DB70352F8CB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B27FBAEC-EE15-4FC6-B2C5-DB70352F8CB8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

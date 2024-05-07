@@ -12,3 +12,7 @@
 /Users/alexeykiselev/SocialService/SocialService.DataAccess/obj/Debug/net8.0/SocialService.DataAccess.pdb
 /Users/alexeykiselev/SocialService/SocialService.DataAccess/obj/Debug/net8.0/SocialService.DataAccess.genruntimeconfig.cache
 /Users/alexeykiselev/SocialService/SocialService.DataAccess/obj/Debug/net8.0/ref/SocialService.DataAccess.dll
+/Users/alexeykiselev/SocialService/SocialService.DataAccess/bin/Debug/net8.0/SocialService.Core.dll
+/Users/alexeykiselev/SocialService/SocialService.DataAccess/bin/Debug/net8.0/SocialService.Core.pdb
+/Users/alexeykiselev/SocialService/SocialService.DataAccess/obj/Debug/net8.0/SocialService.DataAccess.sourcelink.json
+/Users/alexeykiselev/SocialService/SocialService.DataAccess/obj/Debug/net8.0/SocialService.DataAccess.csproj.CopyComplete

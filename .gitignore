@@ -1,0 +1,5 @@
+/certs
+/Dockerfile
+/SocialService.WebApi/appsettings.json
+/SocialService.WebApi/appsettings.Development.json
+/SocialService.WebApi/appsettings.InDocker.json

@@ -1,44 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace SocialService.DataAccess;
 
-public partial class SocialserviceContext : DbContext
+public partial class SocialServiceContext : DbContext
 {
-    public SocialserviceContext()
+    public SocialServiceContext()
     {
     }
 
-    public SocialserviceContext(DbContextOptions<SocialserviceContext> options)
-        : base(options)
+    public SocialServiceContext(DbContextOptions<SocialServiceContext> options): base(options)
     {
     }
 
-    public virtual DbSet<Answer> Answers { get; set; }
+    public virtual DbSet<AnswerEntity> Answers { get; set; }
 
-    public virtual DbSet<Comment> Comments { get; set; }
+    public virtual DbSet<CommentEntity> Comments { get; set; }
 
-    public virtual DbSet<Discussion> Discussions { get; set; }
+    public virtual DbSet<DiscussionEntity> Discussions { get; set; }
 
     public virtual DbSet<Feedback> Feedbacks { get; set; }
 
-    public virtual DbSet<Leaderboard> Leaderboards { get; set; }
+    public virtual DbSet<LeagueEntity> Leagues { get; set; }
 
-    public virtual DbSet<League> Leagues { get; set; }
-
-    public virtual DbSet<Lecture> Lectures { get; set; }
+    public virtual DbSet<LectureEntity> Lectures { get; set; }
 
     public virtual DbSet<Subscriber> Subscribers { get; set; }
 
-    public virtual DbSet<User> Users { get; set; }
+    public virtual DbSet<UserEntity> Users { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=socialservice;Username=alexeykiselev;Password=kisliy");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Answer>(entity =>
+        modelBuilder.Entity<AnswerEntity>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("answer_pkey");
 
@@ -49,10 +42,16 @@ public partial class SocialserviceContext : DbContext
             entity.Property(e => e.DiscussionId)
                 .ValueGeneratedOnAdd()
                 .HasColumnName("discussionid");
+            entity.Property(e => e.EditedOn)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("editedon");
             entity.Property(e => e.Likes)
                 .HasDefaultValue(0)
                 .HasColumnName("likes");
-            entity.Property(e => e.PublishedOn).HasColumnName("publishedon");
+            entity.Property(e => e.PublishedOn)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("publishedon");
             entity.Property(e => e.UserId)
                 .ValueGeneratedOnAdd()
                 .HasColumnName("userid");
@@ -67,23 +66,29 @@ public partial class SocialserviceContext : DbContext
                 .HasConstraintName("answer_userid_fkey");
         });
 
-        modelBuilder.Entity<Comment>(entity =>
+        modelBuilder.Entity<CommentEntity>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("comments_pkey");
 
             entity.ToTable("comments");
 
             entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Body).HasColumnName("body");
+            entity.Property(e => e.EditedOn)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("editedon");
             entity.Property(e => e.LectureId).HasColumnName("lectureid");
             entity.Property(e => e.Likes)
                 .HasDefaultValue(0)
                 .HasColumnName("likes");
-            entity.Property(e => e.PublishedOn).HasColumnName("publishedon");
+            entity.Property(e => e.PublishedOn)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("publishedon");
             entity.Property(e => e.UserId).HasColumnName("userid");
 
             entity.HasOne(d => d.Lecture).WithMany(p => p.Comments)
                 .HasForeignKey(d => d.LectureId)
-                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("comments_lectureid_fkey");
 
             entity.HasOne(d => d.User).WithMany(p => p.Comments)
@@ -92,7 +97,8 @@ public partial class SocialserviceContext : DbContext
                 .HasConstraintName("comments_userid_fkey");
         });
 
-        modelBuilder.Entity<Discussion>(entity =>
+
+        modelBuilder.Entity<DiscussionEntity>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("discussion_pkey");
 
@@ -106,8 +112,14 @@ public partial class SocialserviceContext : DbContext
             entity.Property(e => e.Likes)
                 .HasDefaultValue(0)
                 .HasColumnName("likes");
-            entity.Property(e => e.PublishedOn).HasColumnName("publishedon");
+            entity.Property(e => e.PublishedOn)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("publishedon");
             entity.Property(e => e.Title).HasColumnName("title");
+            entity.Property(e => e.AnswersCount)
+                .HasDefaultValue(0)
+                .HasColumnName("answerscount");
 
             entity.HasOne(d => d.Author).WithMany(p => p.Discussions)
                 .HasForeignKey(d => d.AuthorId)
@@ -133,27 +145,16 @@ public partial class SocialserviceContext : DbContext
                 .HasConstraintName("feedback_userid_fkey");
         });
 
-        modelBuilder.Entity<Leaderboard>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("leaderboard_pkey");
 
-            entity.ToTable("leaderboard");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.LeagueId)
-                .ValueGeneratedOnAdd()
-                .HasColumnName("leagueid");
-
-            entity.HasOne(d => d.League).WithMany(p => p.Leaderboards)
-                .HasForeignKey(d => d.LeagueId)
-                .HasConstraintName("leaderboard_leagueid_fkey");
-        });
-
-        modelBuilder.Entity<League>(entity =>
+        modelBuilder.Entity<LeagueEntity>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("league_pkey");
 
             entity.ToTable("league");
+
+            entity.HasIndex(e => e.LeagueName, "name_unique").IsUnique();
+
+            entity.HasIndex(e => e.HierarchyPlace, "place_unique").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.HierarchyPlace).HasColumnName("hierarchyplace");
@@ -163,7 +164,7 @@ public partial class SocialserviceContext : DbContext
             entity.Property(e => e.Photo).HasColumnName("photo");
         });
 
-        modelBuilder.Entity<Lecture>(entity =>
+        modelBuilder.Entity<LectureEntity>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("lecture_pkey");
 
@@ -176,9 +177,8 @@ public partial class SocialserviceContext : DbContext
 
         modelBuilder.Entity<Subscriber>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("subscribers");
+            entity.HasKey(pc => new {pc.UserId, pc.SubscriptionId}).HasName("subscribers_pkey");
+            entity.ToTable("subscribers");
 
             entity.Property(e => e.SubscriptionId)
                 .ValueGeneratedOnAdd()
@@ -196,22 +196,27 @@ public partial class SocialserviceContext : DbContext
                 .HasConstraintName("subscribers_userid_fkey");
         });
 
-        modelBuilder.Entity<User>(entity =>
+        modelBuilder.Entity<UserEntity>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("users_pkey");
 
             entity.ToTable("users");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .ValueGeneratedOnAdd()
+                .HasColumnName("id");
+            entity.Property(e => e.Photo).HasColumnName("photo");
             entity.Property(e => e.FirstName)
                 .HasMaxLength(100)
                 .HasColumnName("firstname");
             entity.Property(e => e.LastName)
                 .HasMaxLength(100)
                 .HasColumnName("lastname");
-            entity.Property(e => e.LeaderboardId)
+            entity.Property(e => e.LeaderboardId).HasColumnName("leaderboardid");
+            entity.Property(e => e.LeagueId)
                 .ValueGeneratedOnAdd()
-                .HasColumnName("leaderboardid");
+                .HasDefaultValue(0)
+                .HasColumnName("leagueid");
             entity.Property(e => e.Status)
                 .HasMaxLength(10)
                 .HasDefaultValueSql("'Default'::character varying")
@@ -231,11 +236,16 @@ public partial class SocialserviceContext : DbContext
             entity.Property(e => e.Xp)
                 .HasDefaultValue(0)
                 .HasColumnName("xp");
+            entity.Property(e => e.IsBot)
+                .HasDefaultValue(false)
+                .HasColumnName("isbot");
 
-            entity.HasOne(d => d.Leaderboard).WithMany(p => p.Users)
-                .HasForeignKey(d => d.LeaderboardId)
+            entity.HasOne(d => d.League).WithMany(p => p.Users)
+                .HasForeignKey(d => d.LeagueId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("users_leaderboardid_fkey");
+                .HasConstraintName("fk_users_league");
+
+            //entity.HasQueryFilter(u => !u.IsBot);
         });
 
         OnModelCreatingPartial(modelBuilder);

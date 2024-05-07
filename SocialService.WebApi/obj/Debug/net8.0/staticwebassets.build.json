@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "f0xXmAjKJ53LzXWO23HiU6M8d1JkU8xBJgzFQ4gIfe4=",
+  "Source": "SocialService.WebApi",
+  "BasePath": "_content/SocialService.WebApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

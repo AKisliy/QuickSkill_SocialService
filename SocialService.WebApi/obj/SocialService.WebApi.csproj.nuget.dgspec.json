@@ -4,14 +4,88 @@
     "/Users/alexeykiselev/SocialService/SocialService.WebApi/SocialService.WebApi.csproj": {}
   },
   "projects": {
-    "/Users/alexeykiselev/SocialService/SocialService.DataAccess/SocialService.DataAccess.csproj": {
+    "/Users/alexeykiselev/SocialService/SocialService.Application/SocialService.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/alexeykiselev/SocialService/SocialService.DataAccess/SocialService.DataAccess.csproj",
-        "projectName": "SocialService.DataAccess",
-        "projectPath": "/Users/alexeykiselev/SocialService/SocialService.DataAccess/SocialService.DataAccess.csproj",
+        "projectUniqueName": "/Users/alexeykiselev/SocialService/SocialService.Application/SocialService.Application.csproj",
+        "projectName": "SocialService.Application",
+        "projectPath": "/Users/alexeykiselev/SocialService/SocialService.Application/SocialService.Application.csproj",
         "packagesPath": "/Users/alexeykiselev/.nuget/packages/",
-        "outputPath": "/Users/alexeykiselev/SocialService/SocialService.DataAccess/obj/",
+        "outputPath": "/Users/alexeykiselev/SocialService/SocialService.Application/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/alexeykiselev/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/Users/alexeykiselev/SocialService/SocialService.Core/SocialService.Core.csproj": {
+                "projectPath": "/Users/alexeykiselev/SocialService/SocialService.Core/SocialService.Core.csproj"
+              },
+              "/Users/alexeykiselev/SocialService/SocialService.Shared/SocialService.Shared.csproj": {
+                "projectPath": "/Users/alexeykiselev/SocialService/SocialService.Shared/SocialService.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "MassTransit": {
+              "target": "Package",
+              "version": "[8.2.0, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[12.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/opt/homebrew/Cellar/dotnet/8.0.1/libexec/sdk/8.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/alexeykiselev/SocialService/SocialService.Core/SocialService.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/alexeykiselev/SocialService/SocialService.Core/SocialService.Core.csproj",
+        "projectName": "SocialService.Core",
+        "projectPath": "/Users/alexeykiselev/SocialService/SocialService.Core/SocialService.Core.csproj",
+        "packagesPath": "/Users/alexeykiselev/.nuget/packages/",
+        "outputPath": "/Users/alexeykiselev/SocialService/SocialService.Core/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/alexeykiselev/.nuget/NuGet/NuGet.Config"
@@ -38,6 +112,77 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "MediatR": {
+              "target": "Package",
+              "version": "[12.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/opt/homebrew/Cellar/dotnet/8.0.1/libexec/sdk/8.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/alexeykiselev/SocialService/SocialService.DataAccess/SocialService.DataAccess.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/alexeykiselev/SocialService/SocialService.DataAccess/SocialService.DataAccess.csproj",
+        "projectName": "SocialService.DataAccess",
+        "projectPath": "/Users/alexeykiselev/SocialService/SocialService.DataAccess/SocialService.DataAccess.csproj",
+        "packagesPath": "/Users/alexeykiselev/.nuget/packages/",
+        "outputPath": "/Users/alexeykiselev/SocialService/SocialService.DataAccess/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/alexeykiselev/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/Users/alexeykiselev/SocialService/SocialService.Core/SocialService.Core.csproj": {
+                "projectPath": "/Users/alexeykiselev/SocialService/SocialService.Core/SocialService.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "EFCore.BulkExtensions": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.3, )"
@@ -46,13 +191,13 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.2, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.2, )"
             },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
@@ -61,8 +206,143 @@
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[8.0.2, )"
+            },
+            "Z.EntityFramework.Extensions.EFCore": {
+              "target": "Package",
+              "version": "[8.102.2.1, )"
             }
           },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/opt/homebrew/Cellar/dotnet/8.0.1/libexec/sdk/8.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/alexeykiselev/SocialService/SocialService.Infrastructure/SocialService.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/alexeykiselev/SocialService/SocialService.Infrastructure/SocialService.Infrastructure.csproj",
+        "projectName": "SocialService.Infrastructure",
+        "projectPath": "/Users/alexeykiselev/SocialService/SocialService.Infrastructure/SocialService.Infrastructure.csproj",
+        "packagesPath": "/Users/alexeykiselev/.nuget/packages/",
+        "outputPath": "/Users/alexeykiselev/SocialService/SocialService.Infrastructure/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/alexeykiselev/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/Users/alexeykiselev/SocialService/SocialService.Core/SocialService.Core.csproj": {
+                "projectPath": "/Users/alexeykiselev/SocialService/SocialService.Core/SocialService.Core.csproj"
+              },
+              "/Users/alexeykiselev/SocialService/SocialService.Shared/SocialService.Shared.csproj": {
+                "projectPath": "/Users/alexeykiselev/SocialService/SocialService.Shared/SocialService.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "EventBus.RabbitMQ.Standard": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "Faker.Net": {
+              "target": "Package",
+              "version": "[2.0.163, )"
+            },
+            "MassTransit": {
+              "target": "Package",
+              "version": "[8.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/opt/homebrew/Cellar/dotnet/8.0.1/libexec/sdk/8.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/alexeykiselev/SocialService/SocialService.Shared/SocialService.Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/alexeykiselev/SocialService/SocialService.Shared/SocialService.Shared.csproj",
+        "projectName": "SocialService.Shared",
+        "projectPath": "/Users/alexeykiselev/SocialService/SocialService.Shared/SocialService.Shared.csproj",
+        "packagesPath": "/Users/alexeykiselev/.nuget/packages/",
+        "outputPath": "/Users/alexeykiselev/SocialService/SocialService.Shared/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/alexeykiselev/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
           "imports": [
             "net461",
             "net462",
@@ -105,8 +385,17 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+              "/Users/alexeykiselev/SocialService/SocialService.Application/SocialService.Application.csproj": {
+                "projectPath": "/Users/alexeykiselev/SocialService/SocialService.Application/SocialService.Application.csproj"
+              },
+              "/Users/alexeykiselev/SocialService/SocialService.Core/SocialService.Core.csproj": {
+                "projectPath": "/Users/alexeykiselev/SocialService/SocialService.Core/SocialService.Core.csproj"
+              },
               "/Users/alexeykiselev/SocialService/SocialService.DataAccess/SocialService.DataAccess.csproj": {
                 "projectPath": "/Users/alexeykiselev/SocialService/SocialService.DataAccess/SocialService.DataAccess.csproj"
+              },
+              "/Users/alexeykiselev/SocialService/SocialService.Infrastructure/SocialService.Infrastructure.csproj": {
+                "projectPath": "/Users/alexeykiselev/SocialService/SocialService.Infrastructure/SocialService.Infrastructure.csproj"
               }
             }
           }
@@ -124,6 +413,26 @@
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[12.0.1, )"
+            },
+            "EventBus.RabbitMQ.Standard": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "Hangfire.AspNetCore": {
+              "target": "Package",
+              "version": "[1.8.11, )"
+            },
+            "Hangfire.Core": {
+              "target": "Package",
+              "version": "[1.8.11, )"
+            },
+            "Hangfire.PostgreSql": {
+              "target": "Package",
+              "version": "[1.20.8, )"
+            },
+            "MassTransit.RabbitMQ": {
+              "target": "Package",
+              "version": "[8.2.0, )"
             },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",

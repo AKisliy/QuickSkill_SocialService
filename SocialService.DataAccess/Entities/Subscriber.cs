@@ -9,7 +9,7 @@ public partial class Subscriber
 
     public int SubscriptionId { get; set; }
 
-    public virtual User Subscription { get; set; } = null!;
+    public virtual UserEntity Subscription { get; set; } = null!;
 
-    public virtual User User { get; set; } = null!;
+    public virtual UserEntity User { get; set; } = null!;
 }
